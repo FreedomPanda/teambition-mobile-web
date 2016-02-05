@@ -1,0 +1,49 @@
+<ion-view class="MyEventListView" ng-controller="MyEventListView as Ctrl">
+
+  <ion-header-bar>
+    <button
+        ng-if="RootCtrl.ionicHistoryHasBackView()"
+        ng-click="RootCtrl.ionicHistoryGoBack()"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+      <!-- <span>Back</span> -->
+    </button>
+    <h1 class="title">我的日程</h1>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <ion-list>
+
+      <section ng-if="Ctrl.EVENTS[label].length" ng-repeat="label in Ctrl.getLabels()">
+
+        <div class="item item-divider">
+          <span>{{ Ctrl.EVENT_DATE_TO_LABEL[label] }}</span>
+        </div>
+
+        <ion-item
+            ng-repeat="event in Ctrl.EVENTS[label]"
+            ng-switch="label"
+            ng-href="#/detail/event/{{ event._id }}">
+
+          <div ng-switch-when="FUTURE">
+            <time>{{ event.startDate | formatDate: 'calendar' }}</time>
+          </div>
+
+          <div ng-switch-when="OLD">
+            <time>{{ event.endDate | formatDate: 'calendar' }}</time>
+          </div>
+
+          <div ng-switch-default>
+            <time>{{ event.startDate | date: 'HH:mm' }}</time>
+            <time>{{ event.endDate | date: 'HH:mm' }}</time>
+          </div>
+
+          <div>
+            <h3>{{ event.title }}</h3>
+          </div>
+        </ion-item>
+      </section>
+    </ion-list>
+  </ion-content>
+</ion-view>

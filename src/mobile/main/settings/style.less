@@ -1,0 +1,61 @@
+@import "../../../less/reference.less";
+
+.SettingListView {
+  ion-content {
+    background: @wellBackground;  // REVIEW
+    .scroll {
+      font-size: @fontSizeSmall;  // REVIEW
+      padding: 2em 0;
+      a {
+        padding: 1em;
+        border: 0 solid #f5f5f5;
+        border-top-width: 1px;
+        line-height: 1;
+        // &:last-child {
+        //   border-bottom-width: 1px;
+        // }
+      }
+      & > nav,
+      & > a {
+        margin-bottom: 2em;
+        background: #fff;
+        display: block;
+        border: 0;
+      }
+      nav a {
+        display: flex;
+        color: @darkTextColor;
+        align-items: center;
+        & > :first-child {
+          flex: 1;
+          span {
+            display: block;
+            &:last-child:not(:first-child) {
+              // font-size: @fontSizeMini;
+              font-size: 10px;  // REVIEW
+              color: @lightTextColor;
+              margin-top: 0.5em;
+            }
+          }
+        }
+        & > :last-child {
+          color: @lightTextColor;
+          font-size: 10px;  // REVIEW
+          span {
+            line-height: 1;
+            display: inline-block;
+          }
+          .icon {
+            // color: lighten(@lightTextColor, 10%);
+            font-size: 8px;
+          }
+        }
+      }
+      & > a {
+        text-align: center;
+        color: @red;
+        margin: 0;
+      }
+    }
+  }
+}

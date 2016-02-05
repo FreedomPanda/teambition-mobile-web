@@ -1,0 +1,62 @@
+<ion-view class="InboxView" ng-controller="InboxView as Ctrl">
+
+  <ion-header-bar>
+    <h1 class="title">收件箱</h1>
+    <button
+        ng-click="Ctrl.popupIonicActionSheet()"
+        class="button button-clear">
+      <i class="icon icon-more"></i>
+    </button>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <ion-refresher pulling-text="下拉以刷新" on-refresh="Ctrl.refresh()"></ion-refresher>
+
+    <ion-list>
+
+      <ion-item
+          ng-repeat="message in Ctrl.getMessages()"
+          class="item-avatar"
+          ng-class="{ READ: Ctrl.isReadMessage($index) }"
+          ng-href="{{ Ctrl.getMessageDetailUrl($index) }}"
+          ng-click="Ctrl.markMessageRead($index)">
+
+        <div>
+          <img ng-src="{{ message.creator.avatarUrl }}" />
+        </div>
+
+        <div>
+
+          <div>
+            <h3>{{ message.creator.name + ' ' + message.title }}</h3>
+            <span ng-if="message.unreadActivitiesCount">{{
+              message.unreadActivitiesCount }}</span>
+          </div>
+
+          <div>
+            <i class="icon" ng-class="Ctrl.typeToIconClass($index)"></i>
+            <span>{{ message.subtitle }}</span>
+            <time
+              ng-if="!message.project.name.trim()">{{
+              message.updated | formatDate: 'calendar' }}</time>
+          </div>
+
+          <div ng-if="message.project.name.trim()">
+            <span>#{{
+              message.project.name.trim() }}</span>
+            <time>{{ message.updated | formatDate: 'calendar' }}</time>
+          </div>
+        </div>
+
+        <ion-option-button
+          class="button-assertive"
+          ng-click="Ctrl.removeMessage($index)">Delete</ion-option-button>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll
+        on-infinite="Ctrl.doInfiniteLoading()"
+        ng-if="Ctrl.canLoadMore()"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

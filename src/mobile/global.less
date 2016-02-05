@@ -1,0 +1,114 @@
+@import "../less/reference.less";
+
+ion-tabs.tabs-icon-top.tabs-bottom,
+ion-tabs.tabs-icon-top.tabs-bottom.tabs-light {
+  .tabs {
+    padding: 0;
+    background: none;
+    border: none;
+    border-top: 1px solid @divideLineColor !important;
+    .tab-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1;
+      &.tab-item-active {
+        color: @linkColorHover;
+      }
+      .icon {
+        height: auto;
+        font-size: 1.7em;
+      }
+      .tab-title {
+        margin-top: 0.5em;
+      }
+    }
+  }
+}
+
+.button.button-clear.icon-button {
+  min-width: auto;
+  min-height: auto;
+  padding: 0 2px;
+  .icon {
+    font-size: 17px;
+    &::before {
+      color: @blue;
+    }
+  }
+}
+
+.bar.bar-header,
+ion-header-bar.bar.bar-header {
+  background: #fff;
+  border: none;
+  border-bottom: 1px solid @divideLineColor;
+  h1 {
+    font-weight: normal;
+  }
+  .button.button-clear {
+    display: flex;
+    align-items: center;
+    color: @linkColorHover;
+    line-height: 1;
+    .icon {
+      vertical-align: baseline;
+      &::before {
+        font-size: inherit;
+        line-height: 1;
+        padding: 0;
+      }
+    }
+    &.white-text-color {
+      color: #fff;
+    }
+  }
+}
+
+ion-content.scroll-content {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  .scroll-bar-v {
+      top: 0;
+      right: 2px;
+      bottom: 0;
+  }
+}
+
+.action-sheet {
+  background: rgba(240, 240, 240, 0.8);
+  margin: 0;
+  .action-sheet-group {
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.8);
+    .button {
+      font-size: inherit;
+      font-weight: normal;
+      min-width: 1em;
+      min-height: 1em;
+      line-height: 1;
+      padding: 1em;
+      border-color: #eee;
+      &::after {
+        content: none;
+      }
+      &:not(.destructive) {
+        color: inherit;
+      }
+    }
+    .button:first-child {
+      border-width: 0;
+    }
+  }
+  .action-sheet-group {
+    margin-bottom: 0.5em;
+  }
+  .action-sheet-group:last-child {
+    margin: 0;
+  }
+}
+
+.list .item .icon::before {
+  font-size: inherit;
+}

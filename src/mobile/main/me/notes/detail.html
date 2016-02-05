@@ -1,0 +1,41 @@
+<ion-modal-view class="MyNoteDetailModalView">
+
+  <ion-header-bar>
+    <button
+        ng-click="Ctrl.hideIonicModel()"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+    </button>
+    <h1 class="title">笔记详情</h1>
+    <button
+        ng-click="Ctrl.editOrCancelOrSave()"
+        class="button button-clear">{{
+            Ctrl.editing ? (Ctrl.NOTE.$dirty ? 'Save' : 'Cancel') : 'Edit'
+        }}</button>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <form name="Ctrl.NOTE" ng-class="{editing: Ctrl.editing}">
+
+      <label>
+        <span>{{ Ctrl.note.title }}</span>
+        <input
+            ng-model="Ctrl.note.title"
+            ng-trim="true"
+            required
+            placeholder="笔记标题" />
+
+      </label>
+
+      <label>
+        <div>{{ Ctrl.note.content }}</div>
+        <textarea
+            ng-model="Ctrl.note.content"
+            ng-trim="true"
+            required
+            placeholder="笔记内容"></textarea>
+      </label>
+    </form>
+  </ion-content>
+</ion-modal-view>

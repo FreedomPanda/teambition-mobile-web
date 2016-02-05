@@ -1,0 +1,39 @@
+<ion-view class="InvitionView" ng-controller="InvitionView as Ctrl">
+
+  <ion-header-bar>
+    <button
+        ng-if="RootCtrl.ionicHistoryHasBackView()"
+        ng-click="RootCtrl.ionicHistoryGoBack()"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+      <!-- <span>Back</span> -->
+    </button>
+    <h1 class="title">系统消息</h1>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <a ng-href="{{ Ctrl.getDetailUrl() }}">
+
+      <div>
+        <img ng-src="{{ Ctrl.MESSAGE.creator.avatarUrl }}" />
+        <span><strong>{{ Ctrl.MESSAGE.creator.name }}</strong>{{
+          Ctrl.MESSAGE.title
+        }}</span>
+      </div>
+
+      <div ng-if="Ctrl.MESSAGE.project.logo || Ctrl.MESSAGE.organization.logo">
+        <img ng-src="{{
+          Ctrl.MESSAGE.project.logo ||
+          Ctrl.MESSAGE.organization.logo }}" />
+      </div>
+
+      <div>
+        <span>{{
+          Ctrl.MESSAGE.project.name ||
+          Ctrl.MESSAGE.organization.name }}</span>
+        <i class="icon icon-chevron-right"></i>
+      </div>
+    </a>
+  </ion-content>
+</ion-view>

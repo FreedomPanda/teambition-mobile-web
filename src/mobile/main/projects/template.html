@@ -1,0 +1,56 @@
+<ion-view class="ProjectListView" ng-controller="ProjectListView as Ctrl">
+
+  <ion-header-bar class="item-input-inset bar-light">
+    <label class="no-item-input-wrapper">
+      <i class="icon ion-ios-search"></i>
+      <input
+          type="search"
+          placeholder="查找项目"
+          ng-model="Ctrl.keyword"
+          ng-change="Ctrl.search(Ctrl.keyword)">
+    </label>
+    <a
+        href="#/creating/project"
+        class="button button-clear">
+      <i class="icon icon-plus"></i>
+    </a>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <ion-list>
+
+      <section
+          ng-if="Ctrl.PROJECTS[label].length"
+          ng-repeat="label in Ctrl.getLabels()">
+
+          <div class="item item-divider">
+            <span>{{ Ctrl.PROJECT_TYPE_TO_LABEL[label] }}</span>
+          </div>
+
+          <ion-item
+              ng-repeat="project in Ctrl.PROJECTS[label]"
+              ng-href="#/project/{{ project._id }}/home">
+
+            <div ng-if="project.logo"><img ng-src="{{ project.logo }}" /></div>
+
+            <div>
+              <h3>{{ project.name }}</h3>
+            </div>
+
+            <ion-option-button
+                class="project-item-more"
+                on-tap="Ctrl.showMore(project)">更多</ion-option-button>
+            <ion-option-button
+                class="project-item-star"
+                on-tap="Ctrl.starProject(project)"
+                ng-hide="project.isStar">星标项目</ion-option-button>
+            <ion-option-button
+                class="project-item-star"
+                on-tap="Ctrl.unStarProject(project)"
+                ng-show="project.isStar">取消星标</ion-option-button>
+          </ion-item>
+      </section>
+    </ion-list>
+  </ion-content>
+</ion-view>

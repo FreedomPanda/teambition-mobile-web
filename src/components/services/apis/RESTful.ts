@@ -106,24 +106,24 @@ export class RestAPI {
       },
       get: {
         method: 'GET',
-        withCredientials: true
+        withCredentials: true
       },
       update: {
         method: 'PUT',
-        withCredientials: true
+        withCredentials: true
       },
       save: {
         method: 'POST',
-        withCredientials: true
+        withCredentials: true
       },
       post: {
         method: 'POST',
-        widthCredientials: true,
+        withCredentials: true,
         isArray: true
       },
       'delete': {
         method: 'DELETE',
-        withCredientials: true
+        withCredentials: true
       }
     });
   }
@@ -176,24 +176,24 @@ export class DingRestAPI {
       },
       get: {
         method: 'GET',
-        withCredientials: true
+        withCredentials: true
       },
       update: {
         method: 'PUT',
-        withCredientials: true
+        withCredentials: true
       },
       save: {
         method: 'POST',
-        withCredientials: true
+        withCredentials: true
       },
       post: {
         method: 'POST',
-        widthCredientials: true,
+        withCredentials: true,
         isArray: true
       },
       'delete': {
         method: 'DELETE',
-        withCredientials: true
+        withCredentials: true
       }
     });
   }

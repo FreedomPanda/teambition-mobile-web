@@ -1,0 +1,20 @@
+<ion-view ng-controller="SubtaskView as SubtaskCtrl">
+  <ion-header-bar>
+    <button
+        ng-if="RootCtrl.ionicHistoryHasBackView()"
+        ng-click="RootCtrl.ionicHistoryGoBack()"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+    </button>
+    <h1 class="title">子任务详情</h1>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list class="subtasks-wrap">
+      <div class="item list-title">子任务</div>
+      <div ng-repeat="subtask in SubtaskCtrl.subtasks" class="item item-icon-left">
+        <i class="icon" ng-class="{'icon-checkbox-thin': !subtask.isDone, 'icon-checkbox-ios-checked': subtask.isDone}"></i>
+        {{subtask.content}}
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

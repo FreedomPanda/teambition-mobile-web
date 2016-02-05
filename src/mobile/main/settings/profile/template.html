@@ -1,0 +1,71 @@
+<ion-view class="SettingProfileView" ng-controller="SettingProfileView as Ctrl">
+
+  <ion-header-bar>
+    <div class="buttons">
+      <button
+          ng-if="RootCtrl.ionicHistoryHasBackView()"
+          ng-click="RootCtrl.ionicHistoryGoBack()"
+          class="button button-clear">
+        <i class="icon icon-chevron-left"></i>
+        <!-- <span>Back</span> -->
+      </button>
+    </div>
+    <h1 class="title">个人资料</h1>
+    <div class="buttons">
+      <button
+          ng-click="Ctrl.editOrSave()"
+          class="button button-clear">
+        <span>{{
+          Ctrl.isSaving() ?
+            'Saving' :
+            (Ctrl.isEditing() ? 'Save' : 'Edit')
+        }}</span>
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content ng-class="{ editing: Ctrl.isEditing() }">
+
+    <form name="Ctrl.ME">
+
+      <header>
+        <div><img ng-src="{{ Ctrl.me.avatarUrl }}" /></div>
+        <div>
+          <h2>{{ Ctrl.me.name }}</h2>
+          <div>{{ Ctrl.me.email }}</div>
+        </div>
+      </header>
+
+      <label ng-show="Ctrl.isEditing()">
+        <span>姓名</span>
+        <span ng-model="Ctrl.me.name">{{ Ctrl.me.name }}</span>
+        <input name="name" ng-model="Ctrl.me.name" required minlength="2" maxlength="30" ng-trim="true" />
+      </label>
+      <label ng-show="Ctrl.isEditing() || Ctrl.me.title" for="title">
+        <span>职位</span>
+        <span>{{ Ctrl.me.title }}</span>
+        <input name="title" ng-model="Ctrl.me.title" ng-trim="true" />
+      </label>
+      <label ng-show="Ctrl.isEditing() || Ctrl.me.birthday">
+        <span>生日</span>
+        <span>{{ Ctrl.me.birthday | date: 'yyyy-MM-dd' }}</span>
+        <input name="birthday" ng-model="Ctrl.me.birthday" type="date" />
+      </label>
+      <label ng-show="Ctrl.isEditing() || Ctrl.me.location">
+        <span>地址</span>
+        <span>{{ Ctrl.me.location }}</span>
+        <input name="location" ng-model="Ctrl.me.location" ng-trim="true" />
+      </label>
+      <label ng-show="Ctrl.isEditing() || Ctrl.me.phone">
+        <span>手机号</span>
+        <span>{{ Ctrl.me.phone }}</span>
+        <input name="phone" ng-model="Ctrl.me.phone" type="number" />
+      </label>
+      <label ng-show="Ctrl.isEditing() || Ctrl.me.website">
+        <span>个人网址</span>
+        <span>{{ Ctrl.me.website }}</span>
+        <input name="website" ng-model="Ctrl.me.website" type="url" />
+      </label>
+    </form>
+  </ion-content>
+</ion-view>

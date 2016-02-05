@@ -1,0 +1,84 @@
+@import "../../../../less/reference.less";
+
+.SettingProfileView {
+  ion-header-bar {
+    .title {
+      left: 0 !important;
+      right: 0 !important;
+    }
+  }
+  ion-content {
+    background: @wellBackground;  // REVIEW
+    .scroll {
+      font-size: @fontSizeSmall;  // REVIEW
+      padding: 2em 0;
+      form {
+        background: #fff;
+        line-height: 1;
+        & > header {
+          display: flex;
+          align-items: center;
+          padding: 1em;
+          & > :first-child {
+            flex: 0 0 4em;
+            margin-right: 1em;
+            img {
+              display: block;
+              width: 100%;
+              border-radius: 50%;
+            }
+          }
+          & > :last-child {
+            h2 {
+              font-size: @baseFontSize;
+              margin: 0;
+            }
+            div {
+              margin-top: 0.5em;
+            }
+          }
+        }
+        & > label {
+          padding: 0 1em;
+          border-top: 1px solid #f5f5f5;
+          display: flex;
+          align-items: center;
+          :first-child {
+            color: @grayTextColor;
+            margin-right: 1em;
+            font-size: @fontSizeSmall;
+            line-height: 1;
+          }
+          :nth-child(2),
+          input:nth-child(3) {
+            flex: 1;
+            box-sizing: content-box;
+            text-align: right;
+            display: block;
+            border: 0;
+            padding: 0.75em 0;
+            font-size: inherit;
+            line-height: 1.5;
+            height: 1.5em;
+          }
+          :nth-child(2) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          input:nth-child(3) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  ion-content.editing .scroll label {
+    span:nth-child(2) {
+      display: none;
+    }
+    input:nth-child(3) {
+      display: block;
+    }
+  }
+}

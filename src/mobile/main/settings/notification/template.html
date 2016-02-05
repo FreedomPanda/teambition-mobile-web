@@ -1,0 +1,56 @@
+<ion-view class="SettingNotificationView" ng-controller="SettingNotificationView as Ctrl">
+
+  <ion-header-bar>
+    <button
+        ng-if="RootCtrl.ionicHistoryHasBackView()"
+        ng-click="RootCtrl.ionicHistoryGoBack()"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+      <!-- <span>Back</span> -->
+    </button>
+    <h1 class="title">通知设置</h1>
+    <button
+        ng-if="Ctrl.NOTIFICATIONS.$dirty"
+        ng-click="Ctrl.save()"
+        class="button button-clear">
+      <span>Save</span>
+    </button>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <form name="Ctrl.NOTIFICATIONS">
+
+      <header>
+        <span>通知</span>
+        <span>电邮</span>
+        <span>移动端</span>
+      </header>
+
+      <div ng-repeat="name in Ctrl.getNames()">
+        <span>{{ Ctrl.LABELS[name] }}</span>
+        <span>
+          <label class="toggle-button">
+            <input
+                type="checkbox"
+                ng-model="Ctrl.notifications[name].email"
+                value="{{ !!Ctrl.notifications[name].email }}"
+                ng-checked="Ctrl.notifications[name].email" />
+            <i></i><i></i>
+          </label>
+        </span>
+        <span>
+          <label class="toggle-button">
+            <input
+                type="checkbox"
+                ng-model="Ctrl.notifications[name].mobile"
+                value="{{ !!Ctrl.notifications[name].mobile }}"
+                ng-checked="Ctrl.notifications[name].mobile"
+                ng-disabled="!Ctrl.exist(Ctrl.notifications[name], 'mobile')" />
+            <i></i><i></i>
+          </label>
+        </span>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

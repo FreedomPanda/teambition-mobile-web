@@ -1,0 +1,99 @@
+<ion-view class="MyTaskListView" ng-controller="MyTaskListView as Ctrl">
+
+  <ion-header-bar>
+    <button
+        ng-if="RootCtrl.ionicHistoryHasBackView()"
+        ng-click="RootCtrl.ionicHistoryGoBack()"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+      <!-- <span>Back</span> -->
+    </button>
+    <h1 class="title">{{ Ctrl.TASK_TYPE_TO_TITLE[Ctrl.TASK_TYPE] }}</h1>
+    <button
+        ng-click="Ctrl.popupIonicActionSheet()"
+        class="button button-clear">
+      <i class="icon icon-more"></i>
+    </button>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <ion-list ng-if="Ctrl.TASK_TYPE === 'UNFULFILLED'" ng-class="Ctrl.TASK_TYPE">
+
+      <ion-item
+          ng-repeat="task in Ctrl.TASKS[Ctrl.TASK_TYPE]"
+          ng-href="#/detail/task/{{ task._id }}">
+
+        <div><i class="icon icon-checkbox-thin"></i></div>
+
+        <div>
+          <h3>{{ task.content }}</h3>
+          <time>{{ task.dueDate | formatDate: 'calendar' }}</time>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ng-if="Ctrl.TASK_TYPE === 'FULFILLED'" ng-class="Ctrl.TASK_TYPE">
+
+      <ion-item
+          ng-repeat="task in Ctrl.TASKS[Ctrl.TASK_TYPE]"
+          ng-href="#/detail/task/{{ task._id }}">
+
+        <div><i class="icon icon-checkbox-ios-checked"></i></div>
+
+        <div>
+          <h3>{{ task.content }}</h3>
+          <time>{{ task.accomplished | formatDate: 'calendar' }}</time>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ng-if="Ctrl.TASK_TYPE === 'FOLLOWING'" ng-class="Ctrl.TASK_TYPE">
+
+      <ion-item
+          ng-repeat="task in Ctrl.TASKS[Ctrl.TASK_TYPE]"
+          ng-href="">
+
+        <div><i
+            class="icon icon-checkbox-thin"
+            ng-class="{
+              notAssignedToMe: Ctrl._id !== task.executor._id &&
+                Ctrl._id !== task._creatorId
+            }"></i></div>
+
+        <div>
+          <h3>{{ task.content }}</h3>
+          <time>{{ task.dueDate | formatDate: 'calendar' }}</time>
+        </div>
+
+        <div>
+          <img ng-src="{{ task.executor.avatarUrl }}" />
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ng-if="Ctrl.TASK_TYPE === 'CREATING'" ng-class="Ctrl.TASK_TYPE">
+
+      <ion-item
+          ng-repeat="task in Ctrl.TASKS[Ctrl.TASK_TYPE]"
+          ng-href="">
+
+        <div><i
+            class="icon"
+            ng-class="{
+              'icon-checkbox-thin': !task.isDone,
+              'icon-checkbox-ios-checked':  task.isDone
+            }"></i></div>
+
+        <div>
+          <h3>{{ task.content }}</h3>
+          <time>{{ task.dueDate | formatDate: 'calendar' }}</time>
+        </div>
+
+        <div>
+          <img ng-src="{{ task.executor.avatarUrl }}" />
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

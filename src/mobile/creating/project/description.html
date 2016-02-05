@@ -1,0 +1,19 @@
+<ion-modal-view class="CreatingProjectDescriptionModalView">
+
+  <ion-header-bar>
+    <button
+        ng-click="Ctrl.hideIonicModel('DESCRIPTION')"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+    </button>
+    <h1 class="title">项目描述</h1>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <textarea
+        ng-change="Ctrl.PROJECT.$setDirty()"
+        ng-model="Ctrl.project.description"
+        placeholder="项目描述（可选）"></textarea>
+  </ion-content>
+</ion-modal-view>

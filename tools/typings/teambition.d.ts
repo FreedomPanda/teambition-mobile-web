@@ -15,6 +15,7 @@ declare module 'teambition' {
     spiderhost: string;
     dingApiHost: string;
     socket: any;
+    accountHost: string;
   }
 
   interface IRootScope extends angular.IScope {

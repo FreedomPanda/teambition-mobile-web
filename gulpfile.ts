@@ -67,6 +67,14 @@ gulp.task('watch.qqgroup', () => {
   return watch('default', 'qqgroup')
 })
 
+gulp.task('watch.mobile', () => {
+  return watch('default', 'mobile')
+})
+
+gulp.task('mobile', async function () {
+  return await buildBundle('default', 'mobile')
+})
+
 gulp.task('wechat', async function () {
   return await buildBundle('default', 'wechat')
 })

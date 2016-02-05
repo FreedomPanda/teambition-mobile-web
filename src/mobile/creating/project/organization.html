@@ -1,0 +1,38 @@
+<ion-modal-view class="CreatingProjectOrganizationModalView">
+
+  <ion-header-bar>
+    <button
+        ng-click="Ctrl.hideIonicModel('ORGANIZATION')"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+      <!-- <span>Back</span> -->
+    </button>
+    <h1 class="title">项目所有者</h1>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <ion-list>
+
+      <ion-radio
+          ng-model="Ctrl.project._organizationId"
+          ng-change="
+              Ctrl.project._organizationId === null &&
+              Ctrl.setOrganization(null)"
+          ng-value="null">个人项目</ion-radio>
+
+      <div class="item item-divider">
+        <span>企业</span>
+      </div>
+
+      <ion-radio
+          ng-repeat="organization in Ctrl.ORGANIZATIONS"
+          ng-model="Ctrl.project._organizationId"
+          ng-change="
+              Ctrl.project._organizationId === organization._id &&
+              Ctrl.setOrganization(organization);
+              Ctrl.PROJECT.$setDirty()"
+          ng-value="organization._id">{{ organization.name }}</ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

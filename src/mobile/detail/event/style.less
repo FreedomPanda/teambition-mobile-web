@@ -1,0 +1,137 @@
+// Global reference
+@import "../../../less/reference.less";
+
+.event-detail {
+  margin-bottom: 0;
+  input {
+    border: none;
+    width: 100%;
+    padding-left: 0;
+  }
+  .event-main-wrap{
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, .03);
+    .item {
+      background-color: #f7f7f7;
+      .event-title {
+        color: @darkTextColor;
+        font-size: 28px;
+        line-height: 28px;
+        background: #f7f7f7;
+      }
+      .event-time{
+        margin-top: 15px;
+      }
+    }
+  }
+  .event-detail-wrap{
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 0, 0, .03);
+    border-bottom: 1px solid rgba(0, 0, 0, .03);
+    .item{
+      padding: 12px 16px 12px 36px;
+    }
+    .event-content, .event-location{
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      display: flex;
+      display: -webkit-flex;
+      margin-left: 15px;
+      min-height: 20px;
+    }
+  }
+  .item {
+    > p {
+      margin: 0;
+      color: @grayTextColor;
+    }
+    p {
+      overflow: initial;
+      text-overflow: initial;
+      white-space: normal;
+    }
+    .item-value {
+      float: right;
+      max-width: 60%;
+      color: @darkTextColor;
+      margin-right: 5px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+  .event-executor-wrap{
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, .03);
+  }
+}
+
+
+.EventView {
+  @import "../activities/style.less";
+  .list {
+    padding: 0;
+    font-size: @fontSizeSmall;
+    .item.list-title {
+      .ActivityView .item.list-title;
+    }
+    .item.item-icon-left {
+      margin: 0;
+      font-size: @fontSizeSmall;
+      padding: 1em;
+      display: flex;
+      align-items: center;
+      .icon {
+        max-width: none;
+        position: static;
+        font-size: inherit;
+        &::before {
+          width: auto;
+          line-height: 1;
+          color: inherit;
+          // display: block;
+        }
+      }
+      & > span {
+        flex: 1;
+        font-size: inherit;
+        color: @darkTextColor;
+        margin-left: 1em;
+        line-height: 1;
+        min-height: auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: block;
+      }
+    }
+    .event-main-wrap {
+      border: 0;
+      .item {
+        margin: 0;
+        font-size: @fontSizeSmall;
+        padding: 1em;
+        .event-title {
+          font-size: @fontSizeLarger;
+          line-height: @fontSizeLarger + 2;
+        }
+        .event-time {
+          font-size: 10px;
+          color: @blue;
+          margin-top: @fontSizeSmall;
+          time {
+            display: block;
+            line-height: 12px;
+          }
+        }
+      }
+    }
+    .event-detail-wrap {
+      border: 0;
+    }
+    .event-executor-wrap {
+      border: 0;
+    }
+  }
+}

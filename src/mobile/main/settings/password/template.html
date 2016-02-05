@@ -1,0 +1,40 @@
+<ion-view class="SettingPasswordView" ng-controller="SettingPasswordView as Ctrl">
+
+  <ion-header-bar>
+    <button
+        ng-if="RootCtrl.ionicHistoryHasBackView()"
+        ng-click="RootCtrl.ionicHistoryGoBack()"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+      <!-- <span>Back</span> -->
+    </button>
+    <h1 class="title">重置密码</h1>
+    <button
+        ng-if="Ctrl.PASSWORDS.$dirty"
+        ng-click="Ctrl.save()"
+        class="button button-clear">
+      <span>Save</span>
+    </button>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <form name="Ctrl.PASSWORDS">
+
+      <label>
+        <span>当前密码</span>
+        <input type="password" ng-model="Ctrl.passwords.oldPassword" required />
+      </label>
+
+      <label>
+        <span>新密码</span>
+        <input type="password" ng-model="Ctrl.passwords.password1" required />
+      </label>
+
+      <label>
+        <span>验证新密码</span>
+        <input type="password" ng-model="Ctrl.passwords.password2" required />
+      </label>
+    </form>
+  </ion-content>
+</ion-view>

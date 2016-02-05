@@ -1,0 +1,23 @@
+<ion-view ng-controller="PanelPostView as PanelPostCtrl">
+  <ion-header-bar>
+    <button
+        ng-if="RootCtrl.ionicHistoryHasBackView()"
+        ng-click="RootCtrl.ionicHistoryGoBack()"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+    </button>
+    <h1 class="title">分享墙</h1>
+  </ion-header-bar>
+  <ion-content class="post-panel-content has-tabs">
+    <div class="list ionic">
+      <div class="item item-avatar" ng-repeat="post in PanelPostCtrl.posts track by post._id" on-tap="PanelPostCtrl.openDetail(post._id)">
+        <img ng-src="{{post.creatorAvatar}}">
+        <p ng-bind="::post.creatorName"></p>
+        <p class="post-title" ng-bind="::post.title"></p>
+        <p class="post-content" ng-bind-html="::post.content"></p>
+        <time ng-bind="::post.updated | formatDate : 'MM-DD'"></time>
+      </div>
+    </div>
+  </ion-content>
+  <div ng-if="!PanelPostCtrl.posts.length" class="empty-warn project-post"></div>
+</ion-view>

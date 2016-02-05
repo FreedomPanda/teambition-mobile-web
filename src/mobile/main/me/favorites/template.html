@@ -1,0 +1,59 @@
+<ion-view class="MyFavoriteListView" ng-controller="MyFavoriteListView as Ctrl">
+
+  <ion-header-bar>
+    <button
+        ng-if="RootCtrl.ionicHistoryHasBackView()"
+        ng-click="RootCtrl.ionicHistoryGoBack()"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+      <!-- <span>Back</span> -->
+    </button>
+    <h1 class="title">个人收藏</h1>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <ion-list>
+
+      <ion-item
+          ng-repeat="favorite in Ctrl.FAVORITES"
+          ng-href="#/detail/{{ favorite.refType }}/{{ favorite._refId }}">
+
+        <div>
+          <i ng-class="Ctrl.typeToIconClass(favorite)"></i>
+        </div>
+
+        <div ng-switch="favorite.refType">
+          <h3>{{
+            favorite.data.fileName ||
+            favorite.data.title ||
+            favorite.data.content }}</h3>
+          <div ng-switch-when="entry">{{
+            favorite.data.type * favorite.data.amount }}</div>
+          <div ng-switch-when="work">{{
+            favorite.data.fileSize | number }} {{
+            favorite.data.fileSize > 1 ? 'bytes' : 'byte' }}</div>
+          <div ng-switch-when="post" ng-if="favorite.data.content.trim()">{{
+            favorite.data.content }}</div>
+          <div ng-switch-when="event">{{
+            Ctrl.formatEventDate(
+              favorite.data.startDate, favorite.data.endDate) }}</div>
+          <div ng-switch-when="task" ng-if="favorite.data.dueDate">{{
+            favorite.data.dueDate | formatDate: 'calendar' }}</div>
+          <div>#{{ favorite.data.project.name }}</div>
+        </div>
+
+        <div>
+          <img ng-src="{{
+            favorite.data.thumbnailUrl ||
+            favorite.data.executor.avatarUrl ||
+            favorite.data.creator.avatarUrl }}" />
+
+        <ion-option-button
+          class="button-assertive"
+          ng-click="Ctrl.remove($index)">Delete</ion-option-button>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

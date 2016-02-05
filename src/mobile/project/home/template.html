@@ -1,0 +1,42 @@
+<ion-view class="ProjectHomeView" ng-controller="ProjectHomeView as Ctrl">
+
+  <section>
+    <button
+        ng-click="RootCtrl.ionicHistoryGoBack()"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+    </button>
+  </section>
+
+  <ion-content>
+
+    <ion-refresher pulling-text="下拉以刷新" on-refresh="Ctrl.refresh()"></ion-refresher>
+
+    <header>
+      <img ng-src="{{ Ctrl.PROJECT.logo }}" />
+      <h1>{{ Ctrl.PROJECT.name }}</h1>
+      <ul><li ng-repeat="member in Ctrl.MEMBERS"><img ng-src="{{ member.avatarUrl }}" /></li></ul>
+      <nav>
+        <a ng-href="#/creating/task/{{ Ctrl.PROJECT._id }}">
+          <i class="icon icon-checkbox-ios-checked"></i>
+          <span>任务</span>
+        </a>
+        <a ng-href="#/creating/post/{{ Ctrl.PROJECT._id }}">
+          <i class="icon icon-wall"></i>
+          <span>分享</span>
+        </a>
+        <a ng-href="#/creating/work/{{ Ctrl.PROJECT._id }}">
+          <i class="icon icon-file"></i>
+          <span>文件</span>
+        </a>
+        <a ng-href="#/creating/event/{{ Ctrl.PROJECT._id }}">
+          <i class="icon icon-calendar"></i>
+          <span>日程</span>
+        </a>
+      </nav>
+    </header>
+
+    <section>
+    </section>
+  </ion-content>
+</ion-view>

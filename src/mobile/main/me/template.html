@@ -1,0 +1,83 @@
+<ion-view class="MeView" ng-controller="MeView as Ctrl">
+
+  <ion-header-bar>
+    <h1 class="title">我</h1>
+    <a
+        href="#/main/settings"
+        class="button button-clear">
+      <i class="icon icon-cog"></i>
+    </a>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <ion-refresher pulling-text="下拉以刷新" on-refresh="Ctrl.refresh()"></ion-refresher>
+
+    <section>
+
+      <header ng-class="{
+            noAnyCount: !(Ctrl.COUNTERS.tasksCount +
+              Ctrl.EVENTS.length +
+              Ctrl.COUNTERS.favoritesCount +
+              Ctrl.NOTES.length)
+          }">
+
+        <h2>
+          <strong>{{ Ctrl.ME.name }}</strong>
+          <a href="#/main/settings/profile">个人资料</a>
+        </h2>
+
+        <nav>
+          <a
+              ng-href="#/main/me/tasks"
+              ng-if="Ctrl.COUNTERS.tasksCount"
+              ng-href=""><b>{{ Ctrl.COUNTERS.tasksCount }}</b><span>任务</span></a>
+          <a
+              ng-href="#/main/me/events"
+              ng-if="Ctrl.EVENTS.length"
+              ng-href=""><b>{{ Ctrl.EVENTS.length }}</b><span>日程</span></a>
+          <a
+              ng-href="#/main/me/favorites"
+              ng-if="Ctrl.COUNTERS.favoritesCount"
+              ng-href=""><b>{{ Ctrl.COUNTERS.favoritesCount }}</b><span>收藏</span></a>
+          <a
+              ng-href="#/main/me/notes"
+              ng-if="Ctrl.NOTES.length"
+              ng-href=""><b>{{ Ctrl.NOTES.length }}</b><span>笔记</span></a>
+        </nav>
+      </header>
+
+      <div><img ng-src="{{ Ctrl.ME.avatarUrl }}" /></div>
+    </section>
+
+    <section>
+
+      <ion-list>
+
+        <div
+            ng-if="Ctrl.AFFAIRS[label].length"
+            ng-repeat="label in Ctrl.getLabels()">
+
+          <div class="item item-divider">
+            <span>{{ Ctrl.AFFAIR_DATE_TO_LABEL[label] }}</span>
+          </div>
+
+          <ion-item
+              ng-repeat="affair in Ctrl.AFFAIRS[label]"
+              ng-href="{{ Ctrl.getAffairDetailUrl(affair) }}">
+
+            <div><i ng-class="Ctrl.typeToIconClass(affair)"></i></div>
+
+            <div ng-switch="affair.type">
+              <h3>{{ affair.title || affair.content }}</h3>
+              <time ng-switch-when="task">{{
+                  affair.dueDate | formatDate: 'calendar' }}</time>
+              <time ng-switch-when="event">{{
+                  affair.startDate | eventDateFormat: affair.endDate }}</time>
+            </div>
+          </ion-item>
+        </div>
+      </ion-list>
+    </section>
+  </ion-content>
+</ion-view>

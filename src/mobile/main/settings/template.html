@@ -1,0 +1,79 @@
+<ion-view class="SettingListView" ng-controller="SettingListView as Ctrl">
+
+  <ion-header-bar>
+    <button
+        ng-if="RootCtrl.ionicHistoryHasBackView()"
+        ng-click="RootCtrl.ionicHistoryGoBack()"
+        class="button button-clear">
+      <i class="icon icon-chevron-left"></i>
+      <!-- <span>Back</span> -->
+    </button>
+    <h1 class="title">设置</h1>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <nav>
+      <a href="#/main/settings/profile">
+        <span>个人资料</span>
+        <span><i class="icon icon-chevron-right"></i></span>
+      </a>
+      <!--<a>
+        <span>关联帐号</span>
+        <span><i class="icon icon-chevron-right"></i></span>
+      </a>-->
+      <!-- <a href="#/main/settings/password">
+        <span>重置密码</span>
+        <span><i class="icon icon-chevron-right"></i></span>
+      </a> -->
+      <!--<a>
+        <span>密码保护</span>
+        <span>
+          <span>关闭</span>
+          <i class="icon icon-chevron-right"></i>
+        </span>
+      </a>-->
+    </nav>
+
+    <!--<nav>
+      <a>
+        <span>
+          <span>我的表情特权</span>
+          <span ng-if="Ctrl.getEmojiPrivilegeValidityTerm()">有效期至{{ Ctrl.getEmojiPrivilegeValidityTerm() }}</span>
+        </span>
+        <span><i class="icon icon-chevron-right"></i></span>
+      </a>
+    </nav>-->
+
+    <nav>
+      <a href="#/main/settings/notification">
+        <span>通知设置</span>
+        <span><i class="icon icon-chevron-right"></i></span>
+      </a>
+      <!--<a>
+        <span>多语言</span>
+        <span>
+          <span>简体中文</span>
+          <i class="icon icon-chevron-right"></i>
+        </span>
+      </a>-->
+    </nav>
+
+    <nav>
+      <a href="//www.teambition.com/privacy">
+        <span>隐私条款</span>
+        <span><i class="icon icon-chevron-right"></i></span>
+      </a>
+      <a href="mailto:support@teambition.com">
+        <span>意见与反馈</span>
+        <span><i class="icon icon-chevron-right"></i></span>
+      </a>
+      <a href="//www.teambition.com/apps">
+        <span>下载 APP</span>
+        <span><i class="icon icon-chevron-right"></i></span>
+      </a>
+    </nav>
+
+    <a ng-href="{{ Ctrl.SIGNOUT }}">退出登录</a>
+  </ion-content>
+</ion-view>
