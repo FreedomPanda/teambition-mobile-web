@@ -204,8 +204,11 @@ export default class {
     return this.$restful.delete({
       Type: 'notes',
       Id: _id
-    }).$promise;
+    }).$promise;//.then(() => MeModel.removeMyNoteByID(_id)); // FIXME
   }
+
+  // TODO
+  // removeMyNoteByIndex() {}
 
   removeMyFavorite(_id, type): angular.IPromise<any> {
     const FAVORITE_TYPE_TO_URL = {

@@ -1,4 +1,4 @@
-<ion-view class="SettingNotificationView" ng-controller="SettingNotificationView as Ctrl">
+<ion-view class="SettingNotificationView" ng-controller="SettingNotificationView as SettingNotificationCtrl">
 
   <ion-header-bar>
     <button
@@ -10,8 +10,8 @@
     </button>
     <h1 class="title">通知设置</h1>
     <button
-        ng-if="Ctrl.NOTIFICATIONS.$dirty"
-        ng-click="Ctrl.save()"
+        ng-if="SettingNotificationCtrl.NOTIFICATIONS.$dirty"
+        ng-click="SettingNotificationCtrl.save()"
         class="button button-clear">
       <span>Save</span>
     </button>
@@ -19,38 +19,43 @@
 
   <ion-content>
 
-    <form name="Ctrl.NOTIFICATIONS">
-
-      <header>
-        <span>通知</span>
-        <span>电邮</span>
-        <span>移动端</span>
-      </header>
-
-      <div ng-repeat="name in Ctrl.getNames()">
-        <span>{{ Ctrl.LABELS[name] }}</span>
-        <span>
-          <label class="toggle-button">
-            <input
-                type="checkbox"
-                ng-model="Ctrl.notifications[name].email"
-                value="{{ !!Ctrl.notifications[name].email }}"
-                ng-checked="Ctrl.notifications[name].email" />
-            <i></i><i></i>
-          </label>
-        </span>
-        <span>
-          <label class="toggle-button">
-            <input
-                type="checkbox"
-                ng-model="Ctrl.notifications[name].mobile"
-                value="{{ !!Ctrl.notifications[name].mobile }}"
-                ng-checked="Ctrl.notifications[name].mobile"
-                ng-disabled="!Ctrl.exist(Ctrl.notifications[name], 'mobile')" />
-            <i></i><i></i>
-          </label>
-        </span>
-      </div>
+    <form name="SettingNotificationCtrl.NOTIFICATIONS">
+      <table>
+        <thead>
+          <tr>
+            <th><span>通知</span></th>
+            <th><span>电子邮件</span></th>
+            <th><span>移动客户端</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="name in SettingNotificationCtrl.getNames()">
+            <td><span>{{ SettingNotificationCtrl.LABELS[name] }}</span></td>
+            <td>
+              <label class="toggle-button">
+                <input
+                    type="checkbox"
+                    ng-model="SettingNotificationCtrl.notifications[name].email"
+                    value="{{ !!SettingNotificationCtrl.notifications[name].email }}"
+                    ng-checked="SettingNotificationCtrl.notifications[name].email" />
+                <i></i><i></i>
+              </label>
+            </td>
+            <td>
+              <label
+                  ng-if="SettingNotificationCtrl.exist(SettingNotificationCtrl.notifications[name], 'mobile')"
+                  class="toggle-button">
+                <input
+                    type="checkbox"
+                    ng-model="SettingNotificationCtrl.notifications[name].mobile"
+                    value="{{ !!SettingNotificationCtrl.notifications[name].mobile }}"
+                    ng-checked="SettingNotificationCtrl.notifications[name].mobile" />
+                <i></i><i></i>
+              </label>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </form>
   </ion-content>
 </ion-view>

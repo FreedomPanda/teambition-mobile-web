@@ -1,4 +1,4 @@
-<ion-view class="SettingPasswordView" ng-controller="SettingPasswordView as Ctrl">
+<ion-view class="SettingPasswordView" ng-controller="SettingPasswordView as SettingPasswordCtrl">
 
   <ion-header-bar>
     <button
@@ -8,10 +8,10 @@
       <i class="icon icon-chevron-left"></i>
       <!-- <span>Back</span> -->
     </button>
-    <h1 class="title">重置密码</h1>
+    <h1 class="title">密码修改</h1>
     <button
-        ng-if="Ctrl.PASSWORDS.$dirty"
-        ng-click="Ctrl.save()"
+        ng-if="SettingPasswordCtrl.PASSWORDS.$dirty"
+        ng-click="SettingPasswordCtrl.save()"
         class="button button-clear">
       <span>Save</span>
     </button>
@@ -19,21 +19,21 @@
 
   <ion-content>
 
-    <form name="Ctrl.PASSWORDS">
+    <form name="SettingPasswordCtrl.PASSWORDS">
 
       <label>
         <span>当前密码</span>
-        <input type="password" ng-model="Ctrl.passwords.oldPassword" required />
+        <input type="password" ng-model="SettingPasswordCtrl.passwords.oldPassword" required />
       </label>
 
       <label>
         <span>新密码</span>
-        <input type="password" ng-model="Ctrl.passwords.password1" required />
+        <input type="password" ng-model="SettingPasswordCtrl.passwords.password1" required />
       </label>
 
       <label>
         <span>验证新密码</span>
-        <input type="password" ng-model="Ctrl.passwords.password2" required />
+        <input type="password" ng-model="SettingPasswordCtrl.passwords.password2" required />
       </label>
     </form>
   </ion-content>

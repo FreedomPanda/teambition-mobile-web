@@ -1,53 +1,48 @@
-<ion-view class="MeView" ng-controller="MeView as Ctrl">
+<ion-view class="MeView" ng-controller="MeView as MeCtrl">
 
   <ion-header-bar>
     <h1 class="title">我</h1>
     <a
         href="#/main/settings"
-        class="button button-clear">
+        class="button">
       <i class="icon icon-cog"></i>
     </a>
   </ion-header-bar>
 
   <ion-content>
 
-    <ion-refresher pulling-text="下拉以刷新" on-refresh="Ctrl.refresh()"></ion-refresher>
+    <ion-refresher pulling-text="下拉以刷新" on-refresh="MeCtrl.refresh()"></ion-refresher>
 
     <section>
 
-      <header ng-class="{
-            noAnyCount: !(Ctrl.COUNTERS.tasksCount +
-              Ctrl.EVENTS.length +
-              Ctrl.COUNTERS.favoritesCount +
-              Ctrl.NOTES.length)
-          }">
+      <header>
 
         <h2>
-          <strong>{{ Ctrl.ME.name }}</strong>
+          <strong>{{ MeCtrl.ME.name }}</strong>
           <a href="#/main/settings/profile">个人资料</a>
         </h2>
 
         <nav>
           <a
               ng-href="#/main/me/tasks"
-              ng-if="Ctrl.COUNTERS.tasksCount"
-              ng-href=""><b>{{ Ctrl.COUNTERS.tasksCount }}</b><span>任务</span></a>
+              ng-if="MeCtrl.COUNTERS.tasksCount"
+              ng-href=""><b>{{ MeCtrl.COUNTERS.tasksCount }}</b><span>任务</span></a>
           <a
               ng-href="#/main/me/events"
-              ng-if="Ctrl.EVENTS.length"
-              ng-href=""><b>{{ Ctrl.EVENTS.length }}</b><span>日程</span></a>
+              ng-if="MeCtrl.EVENTS.length"
+              ng-href=""><b>{{ MeCtrl.EVENTS.length }}</b><span>日程</span></a>
           <a
               ng-href="#/main/me/favorites"
-              ng-if="Ctrl.COUNTERS.favoritesCount"
-              ng-href=""><b>{{ Ctrl.COUNTERS.favoritesCount }}</b><span>收藏</span></a>
+              ng-if="MeCtrl.COUNTERS.favoritesCount"
+              ng-href=""><b>{{ MeCtrl.COUNTERS.favoritesCount }}</b><span>收藏</span></a>
           <a
               ng-href="#/main/me/notes"
-              ng-if="Ctrl.NOTES.length"
-              ng-href=""><b>{{ Ctrl.NOTES.length }}</b><span>笔记</span></a>
+              ng-if="MeCtrl.NOTES.length"
+              ng-href=""><b>{{ MeCtrl.NOTES.length }}</b><span>笔记</span></a>
         </nav>
       </header>
 
-      <div><img ng-src="{{ Ctrl.ME.avatarUrl }}" /></div>
+      <div><img ng-src="{{ MeCtrl.ME.avatarUrl }}" /></div>
     </section>
 
     <section>
@@ -55,21 +50,24 @@
       <ion-list>
 
         <div
-            ng-if="Ctrl.AFFAIRS[label].length"
-            ng-repeat="label in Ctrl.getLabels()">
+            ng-if="MeCtrl.AFFAIRS[label].length"
+            ng-repeat="label in MeCtrl.getLabels()">
 
           <div class="item item-divider">
-            <span>{{ Ctrl.AFFAIR_DATE_TO_LABEL[label] }}</span>
+            <span>{{ MeCtrl.AFFAIR_DATE_TO_LABEL[label] }}</span>
           </div>
 
           <ion-item
-              ng-repeat="affair in Ctrl.AFFAIRS[label]"
-              ng-href="{{ Ctrl.getAffairDetailUrl(affair) }}">
+              ng-repeat="affair in MeCtrl.AFFAIRS[label]"
+              ng-href="{{ MeCtrl.getAffairDetailUrl(affair) }}">
 
-            <div><i ng-class="Ctrl.typeToIconClass(affair)"></i></div>
+            <div class="item-icon"><i ng-class="MeCtrl.typeToIconClass(affair)"></i></div>
+
+            <div>
+              <h3>{{ affair.title || affair.content }}</h3>
+            </div>
 
             <div ng-switch="affair.type">
-              <h3>{{ affair.title || affair.content }}</h3>
               <time ng-switch-when="task">{{
                   affair.dueDate | formatDate: 'calendar' }}</time>
               <time ng-switch-when="event">{{

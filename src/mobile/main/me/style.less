@@ -1,65 +1,81 @@
-@import "../../../less/reference.less";
-
+@import "../../global.less";
 .MeView {
   ion-content {
-    background: @wellBackground;
+
+    // ME
     section:first-of-type {
       display: flex;
       align-items: center;
       background: #fff;
-      // padding: 1em;
+      font-size: @fontSizeSmall;
+
+      // PROFILE
       header {
         flex: 1;
-        // margin-left: 1em;
         h2 {
-          font-size: @baseFontSize;
+          font-size: inherit;
           padding: 1em 1em 0;
           margin: 0;
           white-space: nowrap;
+          display: flex;
+          align-items: center;
           strong {
             font-size: @fontSizeLarger;
+            line-height: @fontSizeLarger + 2;
             font-weight: normal;
-            line-height: 1;
-            vertical-align: middle;
           }
           a {
-            color: @grayBtnTextColor;
-            font-size: 10px;
+            font-size: @fontSizeNano;
             line-height: 1;
             padding: 0.5em;
-            background: @btnBackgroundHighlight;
+            color: @grayBtnTextColor;
+            background: @grayLighter;
             border-radius: 3px;
             margin-left: 1em;
-            display: inline-block;
+            &:hover,
+            &:active {
+              background: @grayLight;
+            }
           }
         }
-        &.noAnyCount h2 {
-          padding-bottom: 1em;
-        }
         nav {
+          min-height: 1em;  // HACK: h2-padding-bottom
           display: flex;
-          // margin-top: 0.5em;
-          // margin: 0.5em 0;r
           a {
-            // flex: 1;
             padding: 1em;
             b,
             span {
               display: block;
               text-align: center;
+            }
+            b {
               color: @darkTextColor;
-              line-height: 1;
               font-weight: normal;
+              font-size: @fontSizeLarge;
+              line-height: @fontSizeLarge + 2;
             }
             span {
               color: @lightTextColor;
-              font-size: 10px;
-              margin-top: 0.5em;
+              font-size: @fontSizeNano;
+              line-height: @fontSizeNano + 2;
+              margin-top: 3px;
               white-space: nowrap;
+            }
+            &:hover,
+            &:active {
+              b {
+                color: @HOVERED_TEXT_COLOR;
+              }
+              span {
+                color: @grayDarker;
+              }
             }
           }
         }
       }
+      // PROFILE: END
+
+      // AVATAR
       & > :last-child {
         flex: 0 0 4em;
         margin: 1em;
@@ -70,75 +86,46 @@
         }
       }
     }
-    section:last-of-type {
-      ion-list .list {
-        padding: 0;
-        .item.item-divider {
-          padding: 0.5em 1em;
+    // ME: END
+
+    // LIST
+    section:last-of-type ion-list .list ion-item .item-content {
+      // padding-top: 0.5em;
+      // padding-bottom: 0.5em;
+      & > :nth-child(2),
+      & > :last-child {
+        margin-left: 1em;
+      }
+      & > :nth-child(2) {
+        flex: 1;
+        overflow: hidden;
+        h3 {
+          font-size: @baseFontSize;
+          line-height: @baseFontSize + 2;
           margin: 0;
           font-weight: normal;
-          font-size: @fontSizeSmall;
-          line-height: 1;
-          min-height: auto;
+          color: @darkTextColor;
+        }
+      }
+      & > :last-child {
+        time {
+          font-size: @fontSizeNano;
+          line-height: @fontSizeNano + 2;
           color: @lightTextColor;
-          span {
-            font-size: 10px;
-            display: block;
+          display: block;
+          // margin-top: @fontSizeSmall / 2; // HACK
+          &:empty {
+            display: none;
           }
         }
-        ion-item {
-          margin: 0;
-          padding: 0;
-          // border-top: 1px solid @lightDivideLineColor;
-          border-top: 1px solid #f5f5f5;
-          .item-content {
-            font-size: @fontSizeSmall;
-            padding: 1em;
-            display: flex;
-            align-items: center;
-            & > :first-child {
-              margin-right: 1em;
-              .icon {
-                display: block;
-                line-height: 1;
-                &::before {
-                  font-size: inherit;
-                  color: inherit;
-                }
-                &.notAssignedToMe {
-                  background: #eee;
-                  opacity: 0.5;
-                }
-              }
-            }
-            & > :nth-child(2) {
-              flex: 1;
-              overflow: hidden;
-              h3 {
-                margin: 0;
-                font-weight: normal;
-                // color: lighten(@darkTextColor, 10%);
-                color: @darkTextColor;
-                font-size: @fontSizeSmall;  // REVIEW
-                line-height: 1;
-              }
-              time {
-                font-size: 10px; // REVIEW
-                color: @lightTextColor;
-                line-height: 1;
-                display: block;
-                margin-top: 6px;
-                &:empty {
-                  display: none;
-                }
-              }
-            }
-          }
-        }
-        ion-item:first-of-type {
-          border: 0;
+      }
+      &:hover,
+      &:active {
+        h3 {
+          color: @HOVERED_TEXT_COLOR;
         }
       }
     }
+    // LIST: END
   }
 }

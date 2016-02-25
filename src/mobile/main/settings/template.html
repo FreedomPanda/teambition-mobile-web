@@ -1,4 +1,4 @@
-<ion-view class="SettingListView" ng-controller="SettingListView as Ctrl">
+<ion-view class="SettingListView" ng-controller="SettingListView as SettingListCtrl">
 
   <ion-header-bar>
     <button
@@ -22,24 +22,17 @@
         <span>关联帐号</span>
         <span><i class="icon icon-chevron-right"></i></span>
       </a>-->
-      <!-- <a href="#/main/settings/password">
-        <span>重置密码</span>
+      <a href="#/main/settings/password">
+        <span>密码修改</span>
         <span><i class="icon icon-chevron-right"></i></span>
-      </a> -->
-      <!--<a>
-        <span>密码保护</span>
-        <span>
-          <span>关闭</span>
-          <i class="icon icon-chevron-right"></i>
-        </span>
-      </a>-->
+      </a>
     </nav>
 
     <!--<nav>
       <a>
         <span>
           <span>我的表情特权</span>
-          <span ng-if="Ctrl.getEmojiPrivilegeValidityTerm()">有效期至{{ Ctrl.getEmojiPrivilegeValidityTerm() }}</span>
+          <span ng-if="SettingListCtrl.getEmojiPrivilegeValidityTerm()">有效期至{{ SettingListCtrl.getEmojiPrivilegeValidityTerm() }}</span>
         </span>
         <span><i class="icon icon-chevron-right"></i></span>
       </a>
@@ -74,6 +67,6 @@
       </a>
     </nav>
 
-    <a ng-href="{{ Ctrl.SIGNOUT }}">退出登录</a>
+    <a ng-href="{{ SettingListCtrl.SIGNOUT }}">退出登录</a>
   </ion-content>
 </ion-view>

@@ -1,74 +1,68 @@
-@import "../../../../less/reference.less";
-
+@import "../../../global.less";
 .SettingProfileView {
-  ion-header-bar {
-    .title {
-      left: 0 !important;
-      right: 0 !important;
-    }
-  }
-  ion-content {
-    background: @wellBackground;  // REVIEW
-    .scroll {
-      font-size: @fontSizeSmall;  // REVIEW
-      padding: 2em 0;
-      form {
-        background: #fff;
-        line-height: 1;
-        & > header {
-          display: flex;
-          align-items: center;
-          padding: 1em;
-          & > :first-child {
-            flex: 0 0 4em;
-            margin-right: 1em;
-            img {
-              display: block;
-              width: 100%;
-              border-radius: 50%;
-            }
-          }
-          & > :last-child {
-            h2 {
-              font-size: @baseFontSize;
-              margin: 0;
-            }
-            div {
-              margin-top: 0.5em;
-            }
+  ion-content .scroll {
+    font-size: @fontSizeSmall;
+    padding: 2em 0;
+    form {
+      background: #fff;
+      & > header {
+        display: flex;
+        align-items: center;
+        padding: 1em;
+        & > :first-child {
+          flex: 0 0 4em;
+          margin-right: 1em;
+          img {
+            display: block;
+            width: 100%;
+            border-radius: 50%;
           }
         }
-        & > label {
-          padding: 0 1em;
-          border-top: 1px solid #f5f5f5;
-          display: flex;
-          align-items: center;
-          :first-child {
-            color: @grayTextColor;
-            margin-right: 1em;
+        & > :last-child {
+          overflow: hidden;
+          h2 {
+            font-size: @baseFontSize;
+            line-height: @baseFontSize + 2;
+            color: @grayDarker;
+            font-weight: normal;
+            margin: 0;
+            .ELLIPSIS;
+          }
+          div {
             font-size: @fontSizeSmall;
-            line-height: 1;
+            line-height: @fontSizeSmall + 2;
+            color: @grayDark;
+            text-transform: lowercase;
+            margin-top: 0.5em;
           }
-          :nth-child(2),
-          input:nth-child(3) {
-            flex: 1;
-            box-sizing: content-box;
-            text-align: right;
-            display: block;
-            border: 0;
-            padding: 0.75em 0;
-            font-size: inherit;
-            line-height: 1.5;
-            height: 1.5em;
-          }
-          :nth-child(2) {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-          }
-          input:nth-child(3) {
-            display: none;
-          }
+        }
+      }
+      & > label {
+        font-size: @fontSizeSmall;
+        padding: 1em;
+        border-top: 1px solid @DIVIDER_COLOR;
+        display: flex;
+        align-items: center;
+        span:first-child {
+          color: @grayTextColor;
+          margin-right: 1em;
+          line-height: 1;
+        }
+        span:nth-child(2),
+        input:nth-child(3) {
+          flex: 1;
+          text-align: right;
+          border: 0;
+          padding: 0;
+          font-size: @baseFontSize;
+          line-height: @baseFontSize + 2;
+          height: @baseFontSize + 2;  // HACK: input[type="number"]
+        }
+        span:nth-child(2) {
+          .ELLIPSIS;
+        }
+        input:nth-child(3) {
+          display: none;
         }
       }
     }

@@ -1,4 +1,4 @@
-<ion-view class="OrganizationView" ng-controller="OrganizationView as Ctrl">
+<ion-view class="OrganizationView" ng-controller="OrganizationView as OrganizationCtrl">
 
   <ion-header-bar>
     <button
@@ -8,7 +8,7 @@
       <i class="icon icon-chevron-left"></i>
       <!-- <span>Back</span> -->
     </button>
-    <h1 class="title">我的企业</h1>
+    <h1 class="title">企业</h1>
   </ion-header-bar>
 
   <ion-content>
@@ -17,9 +17,9 @@
 
       <section>
         <img
-            ng-if="Ctrl.ORGANIZATION.logo"
-            ng-src="{{ Ctrl.ORGANIZATION.logo }}" />
-        <h3>{{ Ctrl.ORGANIZATION.name }}</h3>
+            ng-if="OrganizationCtrl.ORGANIZATION.logo"
+            ng-src="{{ OrganizationCtrl.ORGANIZATION.logo }}" />
+        <h3>{{ OrganizationCtrl.ORGANIZATION.name }}</h3>
       </section>
 
       <section>
@@ -27,24 +27,24 @@
         <div>
           <span>项目</span>
           <div>
-            <strong>{{ Ctrl.getCount('PROJECT') }}</strong>
-            <span>{{ Ctrl.getTrend('PROJECT') }}</span>
+            <strong>{{ OrganizationCtrl.getCount('PROJECT') }}</strong>
+            <span>{{ OrganizationCtrl.getTrend('PROJECT') }}</span>
           </div>
         </div>
 
         <div>
           <span>成员</span>
           <div>
-            <strong>{{ Ctrl.getCount('MEMBER') }}</strong>
-            <span>{{ Ctrl.getTrend('MEMBER') }}</span>
+            <strong>{{ OrganizationCtrl.getCount('MEMBER') }}</strong>
+            <span>{{ OrganizationCtrl.getTrend('MEMBER') }}</span>
           </div>
         </div>
 
         <div>
           <span>活跃度</span>
           <div>
-            <strong>{{ Ctrl.getCount('ACTIVENESS') }}</strong>
-            <span>{{ Ctrl.getTrend('ACTIVENESS') }}</span>
+            <strong>{{ OrganizationCtrl.getCount('ACTIVENESS') }}</strong>
+            <span>{{ OrganizationCtrl.getTrend('ACTIVENESS') }}</span>
           </div>
         </div>
       </section>

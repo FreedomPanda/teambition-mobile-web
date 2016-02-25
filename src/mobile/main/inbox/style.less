@@ -1,116 +1,99 @@
-@import "../../../less/reference.less";
-
+@import "../../global.less";
 .InboxView {
-  ion-content {
-    background: @wellBackground;
-  }
-  ion-list .list {
-    padding: 0;
-    ion-item {
-      margin: 0;
-      padding: 0;
-      border-top: 1px solid #f5f5f5;
-      .item-content {
-        height: 72px; // HACK
-        font-size: @fontSizeSmall;
-        padding: 1em;
-        display: flex;
-        align-items: center;
+  ion-list .list ion-item {
+    .item-content {
+
+      // AVATAR
+      & > .item-avatar {
+        margin-right: 1em;
+      }
+
+      // MESSAGE
+      & > :nth-child(2) {
+        flex: 1;
+        overflow: hidden;
+        & > div {
+          display: flex;
+          align-items: center;
+        }
+
+        // TITLE
         & > :first-child {
-          flex: 0 0 2em;
-          margin-right: 1em;
-          img {
-            width: 100%;
-            display: block;
-            border-radius: 50%;
+          h3 {
+            flex: 1;
+            margin: 0;
+            font-weight: normal;
+            color: @darkTextColor;
+            font-size: @baseFontSize;
+            line-height: @baseFontSize + 2;
           }
-        }
-        & > :nth-child(2) {
-          flex: 1;
-          overflow: hidden;
-          & > div {
-            display: flex;
-            align-items: center;
-          }
-          & > :first-child {
-            h3 {
-              flex: 1;
-              margin: 0;
-              font-weight: normal;
-              color: @darkTextColor;
-              font-size: @fontSizeSmall;  // REVIEW
-              line-height: 1;
-            }
-            span {
-              line-height: 1;
-              background: @blue;
-              color: #fff;
-              font-size: 11px;
-              margin-left: 1em;
-              padding: 2px 4px 1px;
-              border-radius: 15px;
-            }
-          }
-          & > :nth-child(2),
-          & > :last-child {
-            margin-top: 6px;
-            .icon {
-              &::before {
-                font-size: inherit;
-                color: inherit;
-              }
-            }
-            time {
-              line-height: 1;
-              color: @lightTextColor;
-              font-size: 10px;
-              margin-left: 1em;
-            }
-          }
-          & > :nth-child(2) {
+          span {
+            font-size: @fontSizeMini;
             line-height: 1;
-            font-size: 10px;
-            color: @blue;
-            & > :first-child {
-              margin-right: 0.5em;
-              display: block;
-            }
-            & > :nth-child(2) {
-              flex: 1;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
+            padding: 2px 4px 1px;
+            border-radius: @fontSizeMini + 2 + 1;
+            margin-left: 1em;
+            background: @blue;
+            color: #fff;
           }
-          & > :nth-child(3) {
+        }
+
+        // CONTENT & LABEL
+        & > :nth-child(2),
+        & > :last-child {
+          font-size: @fontSizeNano;
+          line-height: @fontSizeNano + 2;
+          margin-top: @fontSizeSmall / 2;
+          color: @lightTextColor;
+          .ICON;
+          .icon {
+            margin-right: 0.5em;
+          }
+          span {
+            flex: 1;
+            .ELLIPSIS;
+          }
+          time {
+            margin-left: 1em;
+          }
+        }
+      }
+      // MESSAGE: END
+      &:hover,
+      &:active {
+        & > :nth-child(2) {
+          & > :first-child h3 {
+            color: @HOVERED_TEXT_COLOR;
+          }
+          & > :nth-child(2):not(:last-child) {
+            .icon,
             span {
-              flex: 1;
-              line-height: 1;
-              font-size: 10px;
-              color: @lightTextColor;
-              overflow: hidden;
-              text-overflow: ellipsis;
+              color: @grayDarker;
             }
           }
         }
       }
-      // REVIEW
-      ion-option-button {
-        font-size: 10px;
-        text-transform: uppercase;
-        min-width: auto;
-        padding: 1em;
-      }
     }
-    ion-item:first-of-type {
-      border: 0;
-    }
-    ion-item.READ {
+    &.READ {
       .item-content {
-        color: @lightTextColor;
         & > :nth-child(2) {
           & > :first-child h3,
           & > :nth-child(2) {
-            color: inherit;
+            color: @lightTextColor;
+          }
+        }
+        &:hover,
+        &:active {
+          & > :nth-child(2) {
+            & > :first-child h3 {
+              color: darken(@lightTextColor, 10%);
+            }
+            & > :nth-child(2):not(:last-child) {
+              .icon,
+              span {
+                color: darken(@lightTextColor, 10%);
+              }
+            }
           }
         }
       }

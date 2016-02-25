@@ -1,0 +1,30 @@
+@import '../global.less';
+ion-tabs .tabs {
+  padding: 0;
+  background: none;
+  border: 0;
+  height: 49px; // HACK: ion-tabs-height
+  display: flex;
+  align-items: center;
+  box-shadow: @BLOCK_SHADOW;
+  .tab-item {
+    height: auto;
+    &.tab-item-active {
+      color: @linkColorHover;
+    }
+    .icon,
+    .tab-title {
+      display: block;
+    }
+    .icon {
+      height: auto;
+      font-size: @baseFontSize;
+      line-height: 1;
+    }
+    .tab-title {
+      font-size: @fontSizeNano;
+      line-height: @fontSizeNano + 2;
+      margin-top: 3px;  // HACK: (.tabs height: 49px) - (.icon height: @baseFontSize) - (height: @fontSizeNano + 2)
+    }
+  }
+}

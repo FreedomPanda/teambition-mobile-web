@@ -1,179 +1,97 @@
 // Global reference
-@import "../../../less/reference.less";
-
+@import "../../global.less";
 .CreatingProjectView {
-  ion-content {
-    background: @wellBackground;  // REVIEW
-    .scroll {
-      font-size: @fontSizeSmall;  // REVIEW
-      padding: 2em 0;
-      form {
-        background: #fff;
-        line-height: 1;
-        & > label {
-          font-size: inherit;
-          padding: 0 1em;
-          border-top: 1px solid #f5f5f5;
-          display: flex;
-          align-items: center;
-          & > :first-child {
-            color: @grayTextColor;
-            margin-right: 1em;
-            // font-size: @fontSizeSmall;
-            line-height: 1;
-          }
-          & > :last-child {
-            flex: 1;
-            box-sizing: content-box;
-            text-align: right;
-            display: block;
-            border: 0;
-            padding: 0.75em 0;
-            font-size: inherit;
-            line-height: 1.5;
-            height: 1.5em;
-            // font-size: @fontSizeSmall;
-            color: @darkTextColor;
-          }
-          & > span:last-child {
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            span {
-              line-height: 1;
-              flex: 1;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-            }
-            .icon {
-              font-size: 8px;
-              // color: @lightTextColor;
-              margin-left: 1em;
-            }
-          }
-          &:first-child {
-            border: 0;
-          }
-        }
-      }
-    }
-  }
-}
-
-
-.CreatingProjectOrganizationModalView,
-.CreatingProjectVisibilityModalView {
-  ion-content {
-    background: @wellBackground;
-  }
-  ion-list .list {
+  ion-content .scroll {
     font-size: @fontSizeSmall;
     padding: 2em 0;
-    .item.item-divider {
-      padding: 0.5em 1em;
-      margin: 0;
-      font-weight: normal;
-      font-size: @fontSizeSmall;
-      line-height: 1;
-      min-height: auto;
-      color: @lightTextColor;
-      span {
-        font-size: 10px;
-        display: block;
-      }
-    }
-    .item {
-      margin: 0;
-      padding: 0;
-      border-top: 1px solid #f5f5f5;
-      font-size: inherit;
-      .radio-content {
+    form {
+      background: #fff;
+      & > label {
         font-size: inherit;
-        padding: 1em;
-        background: #fff;
+        padding: 0 1em;
         display: flex;
         align-items: center;
-        .item-content {
-          background: inherit;
-          font-size: inherit;
-          padding: 0;
-          flex: 1;
-          span {
-            line-height: 1;
-          }
+        border-top: 1px solid @DIVIDER_COLOR;
+        &:first-child {
+          border: 0;
         }
-        .radio-icon {
-          position: static;
-          padding: 0;
-          height: auto;
-          font-size: 10px;
+        & > :first-child {
+          color: @grayTextColor;
+          margin-right: 1em;
           line-height: 1;
-          &::before {
-            font-size: inherit;
-            color: @blue;
-            display: block;
+        }
+        & > :last-child {
+          flex: 1;
+          text-align: right;
+          border: 0;
+          padding: 0;
+          font-size: inherit;
+          line-height: 3;
+          height: 3em;
+          color: @darkTextColor;
+        }
+        & > span:last-child {
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          span {
+            line-height: inherit;
+            flex: 1;
+            .ELLIPSIS;
+          }
+          .icon {
+            font-size: @ICON_FONT_SIZE;
+            line-height: 1;
+            margin-left: 1em;
           }
         }
       }
-    }
-    .item:first-of-type {
-      border: 0;
     }
   }
 }
-
-
-.CreatingProjectDescriptionModalView {
-  ion-content {
-    background: @wellBackground;
+.CreatingProjectOrganizationModalView,
+.CreatingProjectVisibilityModalView {
+  ion-list .list {
+    padding: 2em 0;
+    .radio-content {
+      padding: 1em;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      .item-content {
+        background: inherit;
+        padding: 0;
+        flex: 1;
+        span {
+          line-height: 1;
+        }
+      }
+      .radio-icon {
+        position: static;
+        padding: 0;
+        height: auto;
+        font-size: 10px;
+        line-height: 1;
+        &::before {
+          font-size: inherit;
+          color: @blue;
+          display: block;
+        }
+      }
+    }
   }
+}
+.CreatingProjectDescriptionModalView {
   .scroll {
     font-size: @fontSizeSmall;
     padding: 2em 0;
-  }
-  textarea {
-    font-size: inherit;
-    padding: 1em;
-    width: 100%;
-    height: 10em;
-    box-sizing: border-box;
-    line-height: 14px;
+    textarea {
+      font-size: inherit;
+      line-height: @fontSizeSmall + 2;
+      padding: 1em;
+      width: 100%;
+      height: 10em;
+      resize: vertical;
+    }
   }
 }
-
-
-/* animation */
-.slide-in-left-right {
-  -webkit-transform: translate3d(-100%, 0, 0);
-  transform: translate3d(-100%, 0, 0); }
-
-.slide-in-left-right.ng-enter, .slide-in-left-right > .ng-enter {
-  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
-  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
-
-.slide-in-left-right.ng-enter-active, .slide-in-left-right > .ng-enter-active {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0); }
-
-.slide-in-left-right.ng-leave, .slide-in-left-right > .ng-leave {
-  -webkit-transition: all ease-in-out 250ms;
-  transition: all ease-in-out 250ms; }
-/* animation end */
-
-
-.slide-in-right {
-  -webkit-transform: translateX(100%);
-    transform: translateX(100%); }
-
-.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
-  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
-  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
-
-.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
-  -webkit-transform: translateX(0);
-    transform: translateX(0); }
-
-.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
-  -webkit-transition: all ease-in-out 250ms;
-  transition: all ease-in-out 250ms; }

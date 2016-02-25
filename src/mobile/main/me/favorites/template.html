@@ -1,4 +1,4 @@
-<ion-view class="MyFavoriteListView" ng-controller="MyFavoriteListView as Ctrl">
+<ion-view class="MyFavoriteListView" ng-controller="MyFavoriteListView as MyFavoriteListCtrl">
 
   <ion-header-bar>
     <button
@@ -16,43 +16,50 @@
     <ion-list>
 
       <ion-item
-          ng-repeat="favorite in Ctrl.FAVORITES"
+          ng-repeat="favorite in MyFavoriteListCtrl.FAVORITES"
           ng-href="#/detail/{{ favorite.refType }}/{{ favorite._refId }}">
 
-        <div>
-          <i ng-class="Ctrl.typeToIconClass(favorite)"></i>
+        <div class="item-icon">
+          <i ng-class="MyFavoriteListCtrl.typeToIconClass(favorite)"></i>
         </div>
 
-        <div ng-switch="favorite.refType">
+        <div>
+
           <h3>{{
             favorite.data.fileName ||
             favorite.data.title ||
             favorite.data.content }}</h3>
-          <div ng-switch-when="entry">{{
-            favorite.data.type * favorite.data.amount }}</div>
-          <div ng-switch-when="work">{{
-            favorite.data.fileSize | number }} {{
-            favorite.data.fileSize > 1 ? 'bytes' : 'byte' }}</div>
-          <div ng-switch-when="post" ng-if="favorite.data.content.trim()">{{
-            favorite.data.content }}</div>
-          <div ng-switch-when="event">{{
-            Ctrl.formatEventDate(
-              favorite.data.startDate, favorite.data.endDate) }}</div>
-          <div ng-switch-when="task" ng-if="favorite.data.dueDate">{{
-            favorite.data.dueDate | formatDate: 'calendar' }}</div>
-          <div>#{{ favorite.data.project.name }}</div>
+
+          <div ng-switch="favorite.refType">
+            <span ng-switch-when="entry">{{
+              favorite.data.type * favorite.data.amount }}</span>
+            <span ng-switch-when="work">{{
+              favorite.data.fileSize | number }} {{
+              favorite.data.fileSize > 1 ? 'bytes' : 'byte' }}</span>
+            <span ng-switch-when="post" ng-if="favorite.data.content.trim()">{{
+              favorite.data.content }}</span>
+            <time ng-switch-when="event">{{
+              MyFavoriteListCtrl.formatEventDate(
+                favorite.data.startDate, favorite.data.endDate) }}</time>
+            <time ng-switch-when="task" ng-if="favorite.data.dueDate">{{
+              favorite.data.dueDate | formatDate: 'calendar' }}</time>
+          </div>
+
+          <div>
+            <span>#{{ favorite.data.project.name }}</span>
+          </div>
         </div>
 
-        <div>
+        <div class="item-avatar">
           <img ng-src="{{
             favorite.data.thumbnailUrl ||
             favorite.data.executor.avatarUrl ||
             favorite.data.creator.avatarUrl }}" />
+        </div>
 
         <ion-option-button
-          class="button-assertive"
-          ng-click="Ctrl.remove($index)">Delete</ion-option-button>
-        </div>
+        class="button-assertive"
+        ng-click="MyFavoriteListCtrl.remove($index)">删除</ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

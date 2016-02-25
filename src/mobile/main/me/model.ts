@@ -1,7 +1,7 @@
 import {IUserMe} from 'teambition';
 import BaseModel from '../../../components/bases/BaseModel';
 
-export default new (class extends BaseModel {
+class MeModel extends BaseModel {
 
   private USER_NAMESPACE = 'USER';
   private ME_ID = 'ME';
@@ -48,6 +48,23 @@ export default new (class extends BaseModel {
   }
   removeMyNotes() {
     this._delete(this.MY_NAMESPACE, this.NOTE_LIST);
+  }
+  removeMyNoteByID(_id) {
+    let notes = this.findMyNotes() || [];
+    console.log(_id, notes);
+    notes.some((note, index) => {
+      if (note._id === _id) {
+        notes.splice(index, 1);
+        console.log(this.findMyNotes());
+        return true;
+      }
+    });
+  }
+  removeMyNoteByIndex(index) {
+    let notes = this.findMyNotes() || [];
+    if (index < notes.length) {
+      notes.splice(index, 1);
+    }
   }
 
   findMyFavorites() {
@@ -126,4 +143,6 @@ export default new (class extends BaseModel {
   removeMyCreatingTasks() {
     this._delete(this.MY_NAMESPACE, this.CREATING_TASK_LIST);
   }
-})();
+}
+
+export default new MeModel();

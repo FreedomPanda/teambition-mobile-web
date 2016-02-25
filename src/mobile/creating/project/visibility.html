@@ -2,7 +2,7 @@
 
   <ion-header-bar>
     <button
-        ng-click="Ctrl.hideIonicModel('VISIBILITY')"
+        ng-click="CreatingProjectCtrl.hideIonicModel('VISIBILITY')"
         class="button button-clear">
       <i class="icon icon-chevron-left"></i>
     </button>
@@ -14,10 +14,10 @@
     <ion-list>
 
       <ion-radio
-          ng-repeat="visibility in Ctrl.getVisibilities()"
-          ng-model="Ctrl.project.visibility"
-          ng-change="Ctrl.hideIonicModel('VISIBILITY'); Ctrl.PROJECT.$setDirty()"
-          ng-value="visibility">{{ Ctrl.VISIBILITIES[visibility] }}</ion-radio>
+          ng-repeat="visibility in CreatingProjectCtrl.getVisibilities()"
+          ng-model="CreatingProjectCtrl.project.visibility"
+          ng-change="CreatingProjectCtrl.hideIonicModel('VISIBILITY'); CreatingProjectCtrl.PROJECT.$setDirty()"
+          ng-value="visibility">{{ CreatingProjectCtrl.VISIBILITIES[visibility] }}</ion-radio>
     </ion-list>
   </ion-content>
 </ion-modal-view>

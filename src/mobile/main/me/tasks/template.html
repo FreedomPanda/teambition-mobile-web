@@ -1,4 +1,4 @@
-<ion-view class="MyTaskListView" ng-controller="MyTaskListView as Ctrl">
+<ion-view class="MyTaskListView" ng-controller="MyTaskListView as MyTaskListCtrl">
 
   <ion-header-bar>
     <button
@@ -8,9 +8,9 @@
       <i class="icon icon-chevron-left"></i>
       <!-- <span>Back</span> -->
     </button>
-    <h1 class="title">{{ Ctrl.TASK_TYPE_TO_TITLE[Ctrl.TASK_TYPE] }}</h1>
+    <h1 class="title">{{ MyTaskListCtrl.TASK_TYPE_TO_TITLE[MyTaskListCtrl.TASK_TYPE] }}</h1>
     <button
-        ng-click="Ctrl.popupIonicActionSheet()"
+        ng-click="MyTaskListCtrl.popupIonicActionSheet()"
         class="button button-clear">
       <i class="icon icon-more"></i>
     </button>
@@ -18,47 +18,56 @@
 
   <ion-content>
 
-    <ion-list ng-if="Ctrl.TASK_TYPE === 'UNFULFILLED'" ng-class="Ctrl.TASK_TYPE">
+    <!-- 未完成的任务 -->
+    <ion-list ng-if="MyTaskListCtrl.TASK_TYPE === 'UNFULFILLED'" ng-class="MyTaskListCtrl.TASK_TYPE">
 
       <ion-item
-          ng-repeat="task in Ctrl.TASKS[Ctrl.TASK_TYPE]"
+          ng-repeat="task in MyTaskListCtrl.TASKS[MyTaskListCtrl.TASK_TYPE]"
           ng-href="#/detail/task/{{ task._id }}">
 
-        <div><i class="icon icon-checkbox-thin"></i></div>
+        <div class="item-icon"><i class="icon icon-checkbox-thin"></i></div>
 
         <div>
           <h3>{{ task.content }}</h3>
+        </div>
+
+        <div>
           <time>{{ task.dueDate | formatDate: 'calendar' }}</time>
         </div>
       </ion-item>
     </ion-list>
 
-    <ion-list ng-if="Ctrl.TASK_TYPE === 'FULFILLED'" ng-class="Ctrl.TASK_TYPE">
+    <!-- 已完成的任务 -->
+    <ion-list ng-if="MyTaskListCtrl.TASK_TYPE === 'FULFILLED'" ng-class="MyTaskListCtrl.TASK_TYPE">
 
       <ion-item
-          ng-repeat="task in Ctrl.TASKS[Ctrl.TASK_TYPE]"
+          ng-repeat="task in MyTaskListCtrl.TASKS[MyTaskListCtrl.TASK_TYPE]"
           ng-href="#/detail/task/{{ task._id }}">
 
-        <div><i class="icon icon-checkbox-ios-checked"></i></div>
+        <div class="item-icon"><i class="icon icon-checkbox-ios-checked"></i></div>
 
         <div>
           <h3>{{ task.content }}</h3>
+        </div>
+
+        <div>
           <time>{{ task.accomplished | formatDate: 'calendar' }}</time>
         </div>
       </ion-item>
     </ion-list>
 
-    <ion-list ng-if="Ctrl.TASK_TYPE === 'FOLLOWING'" ng-class="Ctrl.TASK_TYPE">
+    <!-- 我参与的任务 -->
+    <ion-list ng-if="MyTaskListCtrl.TASK_TYPE === 'FOLLOWING'" ng-class="MyTaskListCtrl.TASK_TYPE">
 
       <ion-item
-          ng-repeat="task in Ctrl.TASKS[Ctrl.TASK_TYPE]"
-          ng-href="">
+          ng-repeat="task in MyTaskListCtrl.TASKS[MyTaskListCtrl.TASK_TYPE]"
+          ng-href="#/detail/task/{{ task._id }}">
 
-        <div><i
+        <div class="item-icon"><i
             class="icon icon-checkbox-thin"
             ng-class="{
-              notAssignedToMe: Ctrl._id !== task.executor._id &&
-                Ctrl._id !== task._creatorId
+              notAssignedToMe: MyTaskListCtrl._id !== task.executor._id &&
+                MyTaskListCtrl._id !== task._creatorId
             }"></i></div>
 
         <div>
@@ -66,19 +75,20 @@
           <time>{{ task.dueDate | formatDate: 'calendar' }}</time>
         </div>
 
-        <div>
+        <div class="item-avatar">
           <img ng-src="{{ task.executor.avatarUrl }}" />
         </div>
       </ion-item>
     </ion-list>
 
-    <ion-list ng-if="Ctrl.TASK_TYPE === 'CREATING'" ng-class="Ctrl.TASK_TYPE">
+    <!-- 我创建的任务 -->
+    <ion-list ng-if="MyTaskListCtrl.TASK_TYPE === 'CREATING'" ng-class="MyTaskListCtrl.TASK_TYPE">
 
       <ion-item
-          ng-repeat="task in Ctrl.TASKS[Ctrl.TASK_TYPE]"
-          ng-href="">
+          ng-repeat="task in MyTaskListCtrl.TASKS[MyTaskListCtrl.TASK_TYPE]"
+          ng-href="#/detail/task/{{ task._id }}">
 
-        <div><i
+        <div class="item-icon"><i
             class="icon"
             ng-class="{
               'icon-checkbox-thin': !task.isDone,
@@ -90,7 +100,7 @@
           <time>{{ task.dueDate | formatDate: 'calendar' }}</time>
         </div>
 
-        <div>
+        <div class="item-avatar">
           <img ng-src="{{ task.executor.avatarUrl }}" />
         </div>
       </ion-item>

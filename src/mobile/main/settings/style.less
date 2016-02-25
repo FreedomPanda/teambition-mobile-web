@@ -1,61 +1,54 @@
-@import "../../../less/reference.less";
-
+@import "../../global.less";
 .SettingListView {
-  ion-content {
-    background: @wellBackground;  // REVIEW
-    .scroll {
-      font-size: @fontSizeSmall;  // REVIEW
-      padding: 2em 0;
-      a {
-        padding: 1em;
-        border: 0 solid #f5f5f5;
-        border-top-width: 1px;
-        line-height: 1;
-        // &:last-child {
-        //   border-bottom-width: 1px;
-        // }
-      }
-      & > nav,
-      & > a {
-        margin-bottom: 2em;
-        background: #fff;
-        display: block;
+  ion-content .scroll {
+    font-size: @fontSizeSmall;
+    padding: 2em 0;
+    a {
+      line-height: 1;
+      padding: 1em;
+      border-bottom: 1px solid @DIVIDER_COLOR;
+      &:last-child {
         border: 0;
       }
-      nav a {
-        display: flex;
-        color: @darkTextColor;
-        align-items: center;
-        & > :first-child {
-          flex: 1;
-          span {
-            display: block;
-            &:last-child:not(:first-child) {
-              // font-size: @fontSizeMini;
-              font-size: 10px;  // REVIEW
-              color: @lightTextColor;
-              margin-top: 0.5em;
-            }
-          }
-        }
-        & > :last-child {
-          color: @lightTextColor;
-          font-size: 10px;  // REVIEW
-          span {
-            line-height: 1;
-            display: inline-block;
-          }
-          .icon {
-            // color: lighten(@lightTextColor, 10%);
-            font-size: 8px;
-          }
-        }
-      }
-      & > a {
-        text-align: center;
-        color: @red;
+    }
+    nav,
+    & > a {
+      margin-top: 2em;
+      background: #fff;
+      display: block;
+      &:first-child {
         margin: 0;
       }
+    }
+    nav a {
+      display: flex;
+      align-items: center;
+      & > :first-child {
+        color: @darkTextColor;
+        flex: 1;
+        span {
+          display: block;
+          &:last-child:not(:first-child) {
+            color: @lightTextColor;
+            font-size: @fontSizeNano;
+            margin-top: 0.5em;
+          }
+        }
+      }
+      & > :last-child {
+        color: @lightTextColor;
+        span {
+          font-size: @fontSizeNano;
+          display: inline-block;
+        }
+        .icon {
+          font-size: @ICON_FONT_SIZE;
+        }
+      }
+    }
+    & > a {
+      text-align: center;
+      color: @red;
     }
   }
 }

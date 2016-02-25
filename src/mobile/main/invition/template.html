@@ -1,4 +1,4 @@
-<ion-view class="InvitionView" ng-controller="InvitionView as Ctrl">
+<ion-view class="InvitionView" ng-controller="InvitionView as InvitionCtrl">
 
   <ion-header-bar>
     <button
@@ -13,25 +13,25 @@
 
   <ion-content>
 
-    <a ng-href="{{ Ctrl.getDetailUrl() }}">
+    <a ng-href="{{ InvitionCtrl.getDetailUrl() }}">
 
       <div>
-        <img ng-src="{{ Ctrl.MESSAGE.creator.avatarUrl }}" />
-        <span><strong>{{ Ctrl.MESSAGE.creator.name }}</strong>{{
-          Ctrl.MESSAGE.title
+        <img ng-src="{{ InvitionCtrl.MESSAGE.creator.avatarUrl }}" />
+        <span><strong>{{ InvitionCtrl.MESSAGE.creator.name }}</strong>{{
+          InvitionCtrl.MESSAGE.title
         }}</span>
       </div>
 
-      <div ng-if="Ctrl.MESSAGE.project.logo || Ctrl.MESSAGE.organization.logo">
+      <div ng-if="InvitionCtrl.MESSAGE.project.logo || InvitionCtrl.MESSAGE.organization.logo">
         <img ng-src="{{
-          Ctrl.MESSAGE.project.logo ||
-          Ctrl.MESSAGE.organization.logo }}" />
+          InvitionCtrl.MESSAGE.project.logo ||
+          InvitionCtrl.MESSAGE.organization.logo }}" />
       </div>
 
       <div>
         <span>{{
-          Ctrl.MESSAGE.project.name ||
-          Ctrl.MESSAGE.organization.name }}</span>
+          InvitionCtrl.MESSAGE.project.name ||
+          InvitionCtrl.MESSAGE.organization.name }}</span>
         <i class="icon icon-chevron-right"></i>
       </div>
     </a>

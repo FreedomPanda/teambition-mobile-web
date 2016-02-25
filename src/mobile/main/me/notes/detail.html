@@ -2,26 +2,26 @@
 
   <ion-header-bar>
     <button
-        ng-click="Ctrl.hideIonicModel()"
+        ng-click="MyNoteListCtrl.hideIonicModel()"
         class="button button-clear">
       <i class="icon icon-chevron-left"></i>
     </button>
     <h1 class="title">笔记详情</h1>
     <button
-        ng-click="Ctrl.editOrCancelOrSave()"
+        ng-click="MyNoteListCtrl.editOrCancelOrSave()"
         class="button button-clear">{{
-            Ctrl.editing ? (Ctrl.NOTE.$dirty ? 'Save' : 'Cancel') : 'Edit'
+            MyNoteListCtrl.editing ? (MyNoteListCtrl.NOTE.$dirty ? 'Save' : 'Cancel') : 'Edit'
         }}</button>
   </ion-header-bar>
 
   <ion-content>
 
-    <form name="Ctrl.NOTE" ng-class="{editing: Ctrl.editing}">
+    <form name="MyNoteListCtrl.NOTE" ng-class="{editing: MyNoteListCtrl.editing}">
 
       <label>
-        <span>{{ Ctrl.note.title }}</span>
+        <span>{{ MyNoteListCtrl.note.title }}</span>
         <input
-            ng-model="Ctrl.note.title"
+            ng-model="MyNoteListCtrl.note.title"
             ng-trim="true"
             required
             placeholder="笔记标题" />
@@ -29,9 +29,9 @@
       </label>
 
       <label>
-        <div>{{ Ctrl.note.content }}</div>
+        <div>{{ MyNoteListCtrl.note.content }}</div>
         <textarea
-            ng-model="Ctrl.note.content"
+            ng-model="MyNoteListCtrl.note.content"
             ng-trim="true"
             required
             placeholder="笔记内容"></textarea>

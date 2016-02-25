@@ -1,5 +1,4 @@
-@import "../../../../less/reference.less";
-
+@import "../../../global.less";
 label.toggle-button {
   font-size: inherit;
   display: block;
@@ -53,49 +52,38 @@ label.toggle-button {
     opacity: 0.5;
   }
 }
-
 .SettingNotificationView {
-  ion-content {
-    background: @wellBackground;  // REVIEW
-    .scroll {
-      font-size: @fontSizeSmall;  // REVIEW
-      padding: 2em 0;
-      form {
-        background: #fff;
-        & > header,
-        & > div {
-          display: flex;
-          align-items: center;
-          padding: 0 1em;
-          & > span {
-            line-height: 1;
-            &:first-child {
-              flex: 1;
-            }
-            &:not(:first-child) {
-              flex: 0 0 6em;
-              padding: 0.83333333333333em 0;
-            }
-            &:last-child {
-              text-align: right;
-              label.toggle-button {
-                margin: auto 0 auto auto;
-              }
-            }
-          }
+  ion-content .scroll {
+    font-size: @fontSizeSmall;
+    padding: 2em 0;
+    color: @grayDarker;
+    form {
+      background: #fff;
+      table {
+        width: 100%;
+      }
+      th,
+      td {
+        vertical-align: middle;
+        padding: 0.833333333em 1em;
+        line-height: 1;
+        text-align: left;
+        span {
+          display: block;
         }
-        & > header {
-          font-weight: bold;
-          background: #fbfbfb;
+        &:nth-child(2),
+        &:last-child {
+          text-align: right;
         }
-        & > div {
-          border-top: 1px solid #f5f5f5;
-          // & > span {
-          //   &:not(:first-child) {
-          //     display: flex;
-          //     align-items: center;
-          //   }
-          // }
+      }
+      thead {
+        background: #fafafa;
+        font-weight: bold;
+      }
+      tbody tr {
+        border-top: 1px solid @DIVIDER_COLOR;
+        td label {
+          margin: auto 0 auto auto;
         }
       }
     }

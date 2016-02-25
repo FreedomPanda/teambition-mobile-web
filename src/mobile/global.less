@@ -1,80 +1,55 @@
 @import "../less/reference.less";
+@DIVIDER_COLOR: #f5f5f5;
+@fontSizeNano: 10px;
+@ICON_FONT_SIZE: 8px;
+@BLOCK_SHADOW: 0 0 5px rgba(0, 0, 0, 0.1);
+@HOVERED_TEXT_COLOR: #000;
+@HOVERED_BACKGROUND_COLOR: #fafafa;
 
-ion-tabs.tabs-icon-top.tabs-bottom,
-ion-tabs.tabs-icon-top.tabs-bottom.tabs-light {
-  .tabs {
-    padding: 0;
-    background: none;
-    border: none;
-    border-top: 1px solid @divideLineColor !important;
-    .tab-item {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      line-height: 1;
-      &.tab-item-active {
-        color: @linkColorHover;
-      }
-      .icon {
-        height: auto;
-        font-size: 1.7em;
-      }
-      .tab-title {
-        margin-top: 0.5em;
-      }
-    }
-  }
+// IONIC-ANIMATION: BEGIN
+
+// slide-in-left-right
+.slide-in-left-right {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+.slide-in-left-right.ng-enter,
+.slide-in-left-right > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+}
+.slide-in-left-right.ng-enter-active,
+.slide-in-left-right > .ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.slide-in-left-right.ng-leave,
+.slide-in-left-right > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms;
 }
 
-.button.button-clear.icon-button {
-  min-width: auto;
-  min-height: auto;
-  padding: 0 2px;
-  .icon {
-    font-size: 17px;
-    &::before {
-      color: @blue;
-    }
-  }
+// slide-in-right
+.slide-in-right {
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
 }
-
-.bar.bar-header,
-ion-header-bar.bar.bar-header {
-  background: #fff;
-  border: none;
-  border-bottom: 1px solid @divideLineColor;
-  h1 {
-    font-weight: normal;
-  }
-  .button.button-clear {
-    display: flex;
-    align-items: center;
-    color: @linkColorHover;
-    line-height: 1;
-    .icon {
-      vertical-align: baseline;
-      &::before {
-        font-size: inherit;
-        line-height: 1;
-        padding: 0;
-      }
-    }
-    &.white-text-color {
-      color: #fff;
-    }
-  }
+.slide-in-right.ng-enter,
+.slide-in-right > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
 }
-
-ion-content.scroll-content {
-  border: 0;
-  margin: 0;
-  padding: 0;
-  .scroll-bar-v {
-      top: 0;
-      right: 2px;
-      bottom: 0;
-  }
+.slide-in-right.ng-enter-active,
+.slide-in-right > .ng-enter-active {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
 }
+.slide-in-right.ng-leave,
+.slide-in-right > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms;
+}
+// IONIC-ANIMATION: END
 
 .action-sheet {
   background: rgba(240, 240, 240, 0.8);
@@ -109,6 +84,168 @@ ion-content.scroll-content {
   }
 }
 
-.list .item .icon::before {
-  font-size: inherit;
+// ICON
+.ICON() {
+  .icon {
+    line-height: 1;
+    &::before {
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+      padding: 0;
+      margin: 0;
+    }
+  }
 }
+
+.ELLIPSIS() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// HEADER: BEGIN
+ion-header-bar.bar.bar-header {
+  height: 44px; // HACK
+  background: #fff;
+  border: 0;
+  display: flex;
+  align-items: center;
+  box-shadow: @BLOCK_SHADOW;
+  .title {
+    font-size: @fontSizeLarger;
+    line-height: @fontSizeLarger + 4;
+    font-weight: normal;
+    height: auto;
+    position: static;
+    margin: auto;
+  }
+  .button,
+  .button:last-child {
+    position: absolute;
+    background: transparent;
+    min-height: auto;
+    border: 0;
+    top: 10px;
+    bottom: 10px;
+    padding: 0 5px;
+    color: @linkColorHover;
+    font-size: @baseFontSize;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    &.activated {
+      background-color: #f2f2f2;
+    }
+    .ICON;
+    span {
+      line-height: 1;
+      display: inline-block;
+    }
+  }
+}
+// HEADER: END
+
+// CONTENT: HEADER
+ion-content {
+  background: #f5f5f5;
+  border: 0;
+  &.scroll-content {
+    padding: 0;
+    margin: 0;
+  }
+  .scroll-bar-v {
+    top: 0;
+    bottom: 0;
+  }
+  &[scroll="false"] {
+    display: flex;
+    flex-direction: column;
+    ion-scroll {
+      flex: 1;
+      margin: 0;
+      overflow: hidden;
+      .scroll {}
+    }
+  }
+}
+// CONTENT: END
+
+// LIST: BEGIN
+ion-list > .list {
+  padding: 0;
+  font-size: @fontSizeSmall;
+  line-height: 1;
+
+  // ITEM-DIVIDER
+  .item.item-divider {
+    font-size: inherit;
+    padding: 0.5em 1em;
+    margin: 0;
+    min-height: auto;
+    color: @lightTextColor;
+    span {
+      font-weight: normal;
+      display: block;
+    }
+  }
+
+  // ITEM
+  .item {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid @DIVIDER_COLOR;
+    font-size: inherit;
+    min-height: auto;
+
+    // ITEM-CONTENT
+    .item-content {
+      min-height: inherit;
+      padding: 1em;
+      display: flex;
+      align-items: center;
+      .item-icon .icon {
+        font-size: @baseFontSize;
+        line-height: 1;
+        display: block;
+        &::before {
+          font-size: inherit;
+          color: inherit;
+        }
+      }
+      .item-avatar {
+        min-height: auto;
+        padding: 0;
+        img {
+          height: 2em;
+          width: auto;
+          display: block;
+          position: static;
+          border-radius: 50%;
+        }
+      }
+      &:hover,
+      &:active {
+        background: @HOVERED_BACKGROUND_COLOR;
+      }
+    }
+
+    // ITEM-ACTION
+    ion-option-button {
+      font-size: @fontSizeNano;
+      text-transform: uppercase;
+      min-width: auto;
+      min-height: auto;
+      padding: 1em;
+      color: #fff;
+      background: @red;
+    }
+  }
+  .item:first-child,
+  .item.item-divider,
+  .item.item-divider + .item {
+    border: 0;
+  }
+  // ITEM: END
+}
+// LIST: END

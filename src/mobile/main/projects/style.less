@@ -1,98 +1,71 @@
-@import "../../../less/reference.less";
-
+@import "../../global.less";
 .ProjectListView {
-  ion-header-bar {
-    display: flex;
-    align-items: center;
-    &.bar.item-input-inset .item-input-wrapper input {
-      padding: 0;
-    }
+  ion-header-bar.bar.bar-header {
     label {
       flex: 1;
       display: flex;
       align-items: center;
-      margin-right: 1em;
-      padding-left: 0.65em;
+      font-size: @fontSizeSmall;
+      line-height: @fontSizeSmall + 2;
+      margin-left: 5px; // HACK: global.less
+      padding: 0 0.584em;
       background: #f5f5f5;
-      border-radius: 5px;
+      border-radius: 3px;
+      .icon {
+        margin-right: 0.584em;
+        &::before {
+          display: block;
+        }
+      }
       input {
-        padding: 0.55em 0.65em;
         font-size: inherit;
+        line-height: inherit;
+        padding: 0.584em 0;
+        height: auto;
         background: transparent;
         flex: 1;
-        height: auto;
       }
     }
-    button.button.button-clear.icon::before {
-      font-size: inherit;
-      color: @linkColorHover;
+    .button:last-child {
+      position: relative;
+      top: 0;
+      bottom: 0;
+      padding: 5px; // HACK: global.less
+      margin-left: 5px; // HACK: global.less
     }
   }
-  ion-content {
-    background: @wellBackground;
-  }
-  ion-list .list {
-    padding: 0;
-    .item.item-divider {
-      padding: 0.5em 1em;
-      margin: 0;
-      font-weight: normal;
-      font-size: @fontSizeSmall;
-      line-height: 1;
-      min-height: auto;
-      color: @lightTextColor;
-      span {
-        font-size: 10px;
-        display: block;
-      }
-    }
-    ion-item {
-      margin: 0;
-      padding: 0;
-      // border-top: 1px solid @lightDivideLineColor;
-      border-top: 1px solid #f5f5f5;
-      .item-content {
-        // height: 52px; // HACK
-        font-size: @fontSizeSmall;
-        padding: 1em;
-        display: flex;
-        align-items: center;
-        & > :first-child {
-          flex: 0 0 3em;
-          margin-right: 1em;
-          img {
-            height: 3em;
-            width: 100%;
-            display: block;
-            // border-radius: 2px;
-          }
-        }
-        & > :last-child {
-          h3 {
-            margin: 0;
-            font-weight: normal;
-            color: @darkTextColor;
-            font-size: @baseFontSize;  // REVIEW
-            line-height: 1;
-          }
+  ion-content ion-list .list ion-item {
+    .item-content {
+      & > .item-avatar {
+        margin-right: 1em;
+        img {
+          height: 3em;
+          border-radius: 0;
         }
       }
-      // REVIEW
-      ion-option-button {
-        font-size: 10px;
-        text-transform: uppercase;
-        min-width: auto;
-        min-height: auto;
-        padding: 1em;
-        color: #fff;
-        background: @orange;
-        &:first-child {
-          background: @grayLight;
+      & > :last-child {
+        flex: 1;
+        overflow: hidden;
+        h3 {
+          margin: 0;
+          font-weight: normal;
+          color: @darkTextColor;
+          font-size: @baseFontSize;
+          line-height: @baseFontSize + 2;
+        }
+      }
+      &:hover,
+      &:active {
+        h3 {
+          color: @HOVERED_TEXT_COLOR;
         }
       }
     }
-    ion-item:first-of-type {
-      border: 0;
+    ion-option-button {
+      background: @orange;
+      &:first-child {
+        background: @grayLight;
+      }
     }
   }
 }

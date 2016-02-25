@@ -1,59 +1,58 @@
 <ion-view
     class="CreatingProjectView"
-    ng-controller="CreatingProjectView as Ctrl">
+    ng-controller="CreatingProjectView as CreatingProjectCtrl">
 
   <ion-header-bar>
     <button
         ng-if="RootCtrl.ionicHistoryHasBackView()"
         ng-click="RootCtrl.ionicHistoryGoBack()"
-        class="button button-clear">
+        class="button">
       <i class="icon icon-chevron-left"></i>
-      <!-- <span>Back</span> -->
     </button>
     <h1 class="title">创建项目</h1>
     <button
-        ng-if="Ctrl.PROJECT.$dirty"
-        ng-click="Ctrl.create()"
-        class="button button-clear">
+        ng-if="CreatingProjectCtrl.PROJECT.$dirty && CreatingProjectCtrl.PROJECT.$valid"
+        ng-click="CreatingProjectCtrl.create()"
+        class="button">
       <span>Create</span>
     </button>
   </ion-header-bar>
 
   <ion-content>
 
-    <form name="Ctrl.PROJECT">
+    <form name="CreatingProjectCtrl.PROJECT">
 
       <label>
         <span>名称</span>
         <input
             placeholder="(必填)"
-            ng-model="Ctrl.project.name"
+            ng-model="CreatingProjectCtrl.project.name"
             required
             ng-minlength="2"
             ng-maxlength="40"
             ng-trim="true" />
       </label>
 
-      <label ng-click="Ctrl.showIonicModel('DESCRIPTION')">
+      <label ng-click="CreatingProjectCtrl.showIonicModel('DESCRIPTION')">
         <span>描述</span>
         <span>
-          <span>{{ Ctrl.project.description }}</span>
+          <span>{{ CreatingProjectCtrl.project.description }}</span>
           <i class="icon icon-chevron-right"></i>
         </span>
       </label>
 
-      <label ng-click="Ctrl.showIonicModel('ORGANIZATION')">
+      <label ng-click="CreatingProjectCtrl.showIonicModel('ORGANIZATION')">
         <span>所有者</span>
         <span>
-          <span>{{ Ctrl.organization.name || '个人项目' }}</span>
+          <span>{{ CreatingProjectCtrl.organization.name || '个人项目' }}</span>
           <i class="icon icon-chevron-right"></i>
         </span>
       </label>
 
-      <label ng-click="Ctrl.showIonicModel('VISIBILITY')">
+      <label ng-click="CreatingProjectCtrl.showIonicModel('VISIBILITY')">
         <span>可见性</span>
         <span>
-          <span>{{ Ctrl.VISIBILITIES[Ctrl.project.visibility || 'project'] }}</span>
+          <span>{{ CreatingProjectCtrl.VISIBILITIES[CreatingProjectCtrl.project.visibility || 'project'] }}</span>
           <i class="icon icon-chevron-right"></i>
         </span>
       </label>

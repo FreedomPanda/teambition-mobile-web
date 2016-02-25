@@ -1,36 +1,32 @@
-@import "../../../../less/reference.less";
-
+@import "../../../global.less";
 .SettingPasswordView {
-  ion-content {
-    background: @wellBackground;  // REVIEW
-    .scroll {
-      font-size: @fontSizeSmall;  // REVIEW
-      padding: 2em 0;
-      form {
-        background: #fff;
-        line-height: 1;
-        & > label {
-          padding: 0 1em;
-          border-top: 1px solid #f5f5f5;
-          display: flex;
-          align-items: center;
-          span {
-            color: @grayTextColor;
-            margin-right: 1em;
-            font-size: @fontSizeSmall;
-            line-height: 1;
-          }
-          input {
-            flex: 1;
-            box-sizing: content-box;
-            text-align: right;
-            display: block;
-            border: 0;
-            padding: 0.75em 0;
-            font-size: inherit;
-            line-height: 1.5;
-            height: 1.5em;
-          }
+  ion-content .scroll {
+    font-size: @fontSizeSmall;
+    padding: 2em 0;
+    form {
+      background: #fff;
+      & > label {
+        font-size: inherit;
+        padding: 0 1em;
+        border-top: 1px solid @DIVIDER_COLOR;
+        display: flex;
+        align-items: center;
+        &:first-child {
+          border: 0;
+        }
+        span {
+          color: @grayTextColor;
+          margin-right: 1em;
+          line-height: 1;
+        }
+        input {
+          flex: 1;
+          text-align: right;
+          border: 0;
+          padding: 0;
+          font-size: inherit;
+          line-height: 3;
+          height: 3em;
         }
       }
     }

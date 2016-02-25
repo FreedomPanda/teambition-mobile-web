@@ -2,7 +2,7 @@
 
   <ion-header-bar>
     <button
-        ng-click="Ctrl.hideIonicModel('ORGANIZATION')"
+        ng-click="CreatingProjectCtrl.hideIonicModel('ORGANIZATION')"
         class="button button-clear">
       <i class="icon icon-chevron-left"></i>
       <!-- <span>Back</span> -->
@@ -15,10 +15,10 @@
     <ion-list>
 
       <ion-radio
-          ng-model="Ctrl.project._organizationId"
+          ng-model="CreatingProjectCtrl.project._organizationId"
           ng-change="
-              Ctrl.project._organizationId === null &&
-              Ctrl.setOrganization(null)"
+              CreatingProjectCtrl.project._organizationId === null &&
+              CreatingProjectCtrl.setOrganization(null)"
           ng-value="null">个人项目</ion-radio>
 
       <div class="item item-divider">
@@ -26,12 +26,12 @@
       </div>
 
       <ion-radio
-          ng-repeat="organization in Ctrl.ORGANIZATIONS"
-          ng-model="Ctrl.project._organizationId"
+          ng-repeat="organization in CreatingProjectCtrl.ORGANIZATIONS"
+          ng-model="CreatingProjectCtrl.project._organizationId"
           ng-change="
-              Ctrl.project._organizationId === organization._id &&
-              Ctrl.setOrganization(organization);
-              Ctrl.PROJECT.$setDirty()"
+              CreatingProjectCtrl.project._organizationId === organization._id &&
+              CreatingProjectCtrl.setOrganization(organization);
+              CreatingProjectCtrl.PROJECT.$setDirty()"
           ng-value="organization._id">{{ organization.name }}</ion-radio>
     </ion-list>
   </ion-content>

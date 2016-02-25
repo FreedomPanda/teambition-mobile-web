@@ -1,117 +1,98 @@
-@import "../../../../less/reference.less";
-
+@import "../../../global.less";
 .MyNoteListView {
-  ion-content {
-    background: @wellBackground;
-  }
-  ion-list .list {
-    padding: 0;
-    ion-item {
-      margin: 0;
-      padding: 0;
-      // border-top: 1px solid @lightDivideLineColor;
-      border-top: 1px solid #f5f5f5;
-      .item-content {
-        height: 52px; // HACK
-        font-size: @fontSizeSmall;
-        padding: 1em;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        & > :first-child {
-          display: flex;
-          align-items: center;
-          h3 {
-            flex: 1;
-            margin: 0;
-            font-weight: normal;
-            color: @darkTextColor;
-            font-size: @fontSizeSmall;  // REVIEW
-            line-height: 1;
-          }
-          time {
-            line-height: 1;
-            font-size: 10px;
-            color: @lightTextColor;
-            margin-left: 1em;
-          }
-        }
-        & > :last-child {
-          font-size: 10px;
-          line-height: 1;
-          margin-top: 6px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          &:empty {
-            display: none;
-          }
-        }
+  ion-list .list ion-item .item-content {
+    // height: 52px; // HACK
+    flex-direction: column;
+    align-items: stretch;
+    & > :first-child {
+      display: flex;
+      align-items: center;
+      h3 {
+        font-size: @baseFontSize;
+        line-height: @baseFontSize + 2;
+        flex: 1;
+        margin: 0;
+        font-weight: normal;
+        color: @darkTextColor;
       }
-      // REVIEW
-      ion-option-button {
-        font-size: 10px;
-        text-transform: uppercase;
-        min-width: auto;
-        padding: 1em;
+      time {
+        font-size: @fontSizeNano;
+        line-height: @fontSizeNano + 2;
+        color: @lightTextColor;
+        margin-left: 1em;
       }
     }
-    ion-item:first-of-type {
-      border: 0;
-    }
-  }
-}
-
-.MyNoteDetailModalView {
-  ion-content {
-    background: @wellBackground;
-  }
-  .scroll {
-    font-size: @fontSizeSmall;
-    padding: 2em 0;
-  }
-  form {
-    background: #fff;
-    label {
-      display: block;
-      font-size: inherit;
-      &:first-child {
-        border-bottom: 1px solid #f5f5f5;
-        span,
-        input {
-          font-size: inherit;
-          border: 0;
-          padding: 0.75em 1em;
-          line-height: 1.5;
-        }
-      }
-      &:last-child {
-        div,
-        textarea {
-          font-size: inherit;
-          padding: 1em;
-          // line-height: 2;
-          line-height: 14px;
-        }
-        textarea {
-          width: 100%;
-          box-sizing: border-box;
-          height: 10em;
-        }
-      }
-      & > :first-child {
-        display: block;
-      }
-      & > :last-child {
+    & > :last-child {
+      font-size: @fontSizeNano;
+      line-height: @fontSizeNano + 2;
+      color: @lightTextColor;
+      margin-top: @fontSizeSmall / 2;
+      .ELLIPSIS;
+      &:empty {
         display: none;
       }
     }
-    &.editing {
+    &:hover,
+    &:active {
+      & > :first-child h3 {
+        color: @HOVERED_TEXT_COLOR;
+      }
+      & > :last-child {
+        color: @grayDarker;
+      }
+    }
+  }
+}
+.MyNoteDetailModalView {
+  .scroll {
+    padding: 1em 0;
+    form {
+      background: #fff;
       label {
+        display: flex;
+        &:first-child {
+          border-bottom: 1px solid @DIVIDER_COLOR;
+          span,
+          input {
+            flex: 1;
+            font-size: @baseFontSize;
+            line-height: 3;
+            height: 3em;  // HACK: input[type="number"]
+            padding: 0 1em;
+            border: 0;
+          }
+          span {
+            .ELLIPSIS;
+          }
+        }
+        &:last-child {
+          div,
+          textarea {
+            font-size: @baseFontSize;
+            line-height: @baseFontSize + 2;
+            padding: 1em;
+          }
+          textarea {
+            width: 100%;
+            box-sizing: border-box;
+            height: 10em; // REVIEW
+          }
+        }
         & > :first-child {
-          display: none;
+          display: block;
         }
         & > :last-child {
-          display: block;
+          display: none;
+        }
+      }
+      &.editing {
+        label {
+          & > :first-child {
+            display: none;
+          }
+          & > :last-child {
+            display: block;
+          }
         }
       }
     }

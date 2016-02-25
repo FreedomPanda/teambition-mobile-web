@@ -2,7 +2,7 @@
 
   <ion-header-bar>
     <button
-        ng-click="Ctrl.hideIonicModel('DESCRIPTION')"
+        ng-click="CreatingProjectCtrl.hideIonicModel('DESCRIPTION')"
         class="button button-clear">
       <i class="icon icon-chevron-left"></i>
     </button>
@@ -12,8 +12,8 @@
   <ion-content>
 
     <textarea
-        ng-change="Ctrl.PROJECT.$setDirty()"
-        ng-model="Ctrl.project.description"
+        ng-change="CreatingProjectCtrl.PROJECT.$setDirty()"
+        ng-model="CreatingProjectCtrl.project.description"
         placeholder="项目描述（可选）"></textarea>
   </ion-content>
 </ion-modal-view>

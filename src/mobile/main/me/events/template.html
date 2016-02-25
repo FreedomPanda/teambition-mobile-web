@@ -1,4 +1,4 @@
-<ion-view class="MyEventListView" ng-controller="MyEventListView as Ctrl">
+<ion-view class="MyEventListView" ng-controller="MyEventListView as MyEventListCtrl">
 
   <ion-header-bar>
     <button
@@ -15,16 +15,20 @@
 
     <ion-list>
 
-      <section ng-if="Ctrl.EVENTS[label].length" ng-repeat="label in Ctrl.getLabels()">
+      <section ng-if="MyEventListCtrl.EVENTS[label].length" ng-repeat="label in MyEventListCtrl.getLabels()">
 
         <div class="item item-divider">
-          <span>{{ Ctrl.EVENT_DATE_TO_LABEL[label] }}</span>
+          <span>{{ MyEventListCtrl.EVENT_DATE_TO_LABEL[label] }}</span>
         </div>
 
         <ion-item
-            ng-repeat="event in Ctrl.EVENTS[label]"
+            ng-repeat="event in MyEventListCtrl.EVENTS[label]"
             ng-switch="label"
             ng-href="#/detail/event/{{ event._id }}">
+
+          <div>
+            <h3>{{ event.title }}</h3>
+          </div>
 
           <div ng-switch-when="FUTURE">
             <time>{{ event.startDate | formatDate: 'calendar' }}</time>
@@ -35,12 +39,7 @@
           </div>
 
           <div ng-switch-default>
-            <time>{{ event.startDate | date: 'HH:mm' }}</time>
-            <time>{{ event.endDate | date: 'HH:mm' }}</time>
-          </div>
-
-          <div>
-            <h3>{{ event.title }}</h3>
+            <time>{{ event.startDate | date: 'HH:mm' }} - {{ event.endDate | date: 'HH:mm' }}</time>
           </div>
         </ion-item>
       </section>

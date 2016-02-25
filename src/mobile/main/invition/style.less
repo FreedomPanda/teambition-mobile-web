@@ -1,18 +1,14 @@
-@import "../../../less/reference.less";
-
+@import "../../global.less";
 .InvitionView {
-  ion-content {
-    background: @wellBackground;
+  ion-content > .scroll {
     text-align: center;
     font-size: @fontSizeSmall;
-    .scroll {
-      padding: 1em;
-    }
+    padding: 1em;
     a {
       text-align: left;
       display: inline-block;
       background: #fff;
-      border-radius: 0.5em;
+      border-radius: 5px;
       color: @linkColorHover;
       & > :first-child,
       & > :last-child {
@@ -20,10 +16,16 @@
         align-items: center;
         padding: 1em;
         & > :first-child {
-          margin-right: 1em;
+          margin-right: @fontSizeSmall;
         }
         span {
-          // word-break: break-all;
+          font-size: @baseFontSize;
+          line-height: @baseFontSize + 2;
+          flex: 1;
+        }
+        .ICON;
+        .icon {
+          font-size: @fontSizeNano;
         }
       }
       & > :first-child {
@@ -32,34 +34,18 @@
           height: 2em;
           border-radius: 50%;
         }
-        span {
-          line-height: 1;
-        }
         strong {
           margin-right: 0.5em;
           font-weight: normal;
           color: @black;
         }
       }
-      & > :nth-child(2) {
-        // background: #f5f5f5;
-        img {
-          display: block;
-          width: 100%;
-        }
+      & > :nth-child(2) img {
+        display: block;
+        width: 100%;
       }
-      & > :last-child {
-        span {
-          flex: 1;
-          line-height: 1;
-        }
-        i {
-          line-height: 1;
-          font-size: 8px;
-        }
-      }
-      & > :last-child:nth-child(2) {
-        border-top: 1px solid #f5f5f5;
+      & >:last-child:nth-child(2) {
+        border-top: 1px solid @DIVIDER_COLOR;
       }
     }
   }
